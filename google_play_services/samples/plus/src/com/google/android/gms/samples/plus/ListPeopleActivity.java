@@ -17,99 +17,193 @@
 package com.google.android.gms.samples.plus;
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.plus.PlusClient;
-import com.google.android.gms.plus.model.people.Person;
 import com.google.android.gms.plus.model.people.PersonBuffer;
-import com.google.android.gms.samples.plus.PlusClientFragment.OnSignedInListener;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 /**
- * Example of listing people through the PlusClient.
+ * Example of listing people with the Google+ APIs.
  */
-public class ListPeopleActivity extends FragmentActivity implements OnSignedInListener,
-        PlusClient.OnPeopleLoadedListener {
+public class ListPeopleActivity extends Activity implements PlusClient.ConnectionCallbacks,
+        PlusClient.OnPeopleLoadedListener, PlusClient.OnConnectionFailedListener,
+        DialogInterface.OnCancelListener {
 
-    private static final String TAG = ListPeopleActivity.class.getSimpleName();
-    private static final int REQUEST_CODE_PLUS_CLIENT_FRAGMENT = 0;
+    private static final String TAG = "ListPeopleActivity";
+
+    private static final String STATE_RESOLVING_ERROR = "resolving_error";
+
+    private static final int DIALOG_GET_GOOGLE_PLAY_SERVICES = 1;
+
+    private static final int REQUEST_CODE_SIGN_IN = 1;
+    private static final int REQUEST_CODE_GET_GOOGLE_PLAY_SERVICES = 2;
 
     private ArrayAdapter mListAdapter;
     private ListView mPersonListView;
     private ArrayList<String> mListItems;
-    private PlusClientFragment mPlusClientFragment;
+    private PlusClient mPlusClient;
+    private boolean mResolvingError;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.person_list_activity);
 
+        mPlusClient = new PlusClient.Builder(this, this, this)
+                .setActions(MomentUtil.ACTIONS)
+                .build();
+
         mListItems = new ArrayList<String>();
-        mListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                mListItems);
+        mListAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, mListItems);
         mPersonListView = (ListView) findViewById(R.id.person_list);
-        mPersonListView.setAdapter(mListAdapter);
-        mPlusClientFragment = PlusClientFragment.getPlusClientFragment(this,
-                MomentUtil.VISIBLE_ACTIVITIES);
+        mResolvingError = savedInstanceState != null
+                && savedInstanceState.getBoolean(STATE_RESOLVING_ERROR, false);
+
+        int available = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (available != ConnectionResult.SUCCESS) {
+            showDialog(DIALOG_GET_GOOGLE_PLAY_SERVICES);
+        }
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        mPlusClientFragment.signIn(REQUEST_CODE_PLUS_CLIENT_FRAGMENT);
+    protected Dialog onCreateDialog(int id) {
+        if (id != DIALOG_GET_GOOGLE_PLAY_SERVICES) {
+            return super.onCreateDialog(id);
+        }
+
+        int available = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (available == ConnectionResult.SUCCESS) {
+            return null;
+        }
+        if (GooglePlayServicesUtil.isUserRecoverableError(available)) {
+            return GooglePlayServicesUtil.getErrorDialog(
+                    available, this, REQUEST_CODE_GET_GOOGLE_PLAY_SERVICES, this);
+        }
+        return new AlertDialog.Builder(this)
+                .setMessage(R.string.plus_generic_error)
+                .setCancelable(true)
+                .setOnCancelListener(this)
+                .create();
     }
 
-    /**
-     * Called when the {@link com.google.android.gms.plus.PlusClient} has been connected
-     * successfully.
-     *
-     * @param plusClient The connected {@link PlusClient} for making API requests.
-     */
     @Override
-    public void onSignedIn(PlusClient plusClient) {
-        plusClient.loadPeople(this, Person.Collection.VISIBLE,
-                Person.OrderBy.ALPHABETICAL, 10, null);
+    protected void onStart() {
+        super.onStart();
+        mPlusClient.connect();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(STATE_RESOLVING_ERROR, mResolvingError);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mPlusClient.disconnect();
     }
 
     @Override
     public void onPeopleLoaded(ConnectionResult status, PersonBuffer personBuffer,
             String nextPageToken) {
-        if (status.getErrorCode() == ConnectionResult.SUCCESS) {
-            mListItems.clear();
-            try {
-                int count = personBuffer.getCount();
-                for (int i = 0; i < count; i++) {
-                    mListItems.add(personBuffer.get(i).getDisplayName());
+        switch (status.getErrorCode()) {
+            case ConnectionResult.SUCCESS:
+                mListItems.clear();
+                try {
+                    int count = personBuffer.getCount();
+                    for (int i = 0; i < count; i++) {
+                        mListItems.add(personBuffer.get(i).getDisplayName());
+                    }
+                } finally {
+                    personBuffer.close();
                 }
-            } finally {
-                personBuffer.close();
-            }
 
-            mListAdapter.notifyDataSetChanged();
-        } else {
-            Log.e(TAG, "Error when listing people: " + status);
+                mListAdapter.notifyDataSetChanged();
+                break;
+
+            case ConnectionResult.SIGN_IN_REQUIRED:
+                mPlusClient.disconnect();
+                mPlusClient.connect();
+                break;
+
+            default:
+                Log.e(TAG, "Error when listing people: " + status);
+                break;
         }
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (mPlusClientFragment.handleOnActivityResult(requestCode, resultCode, data)) {
-            switch (resultCode) {
-                case RESULT_CANCELED:
-                    // User canceled sign in.
-                    Toast.makeText(this, R.string.greeting_status_sign_in_required,
-                            Toast.LENGTH_LONG).show();
-                    finish();
-                    break;
-            }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case REQUEST_CODE_SIGN_IN:
+                mResolvingError = false;
+                handleResult(resultCode);
+                break;
+            case REQUEST_CODE_GET_GOOGLE_PLAY_SERVICES:
+                handleResult(resultCode);
+                break;
         }
+    }
+
+    private void handleResult(int resultCode) {
+        if (resultCode == RESULT_OK) {
+            // onActivityResult is called after onStart (but onStart is not
+            // guaranteed to be called while signing in), so we should make
+            // sure we're not already connecting before we call connect again.
+            if (!mPlusClient.isConnecting() && !mPlusClient.isConnected()) {
+                mPlusClient.connect();
+            }
+        } else {
+            Log.e(TAG, "Unable to sign the user in.");
+            finish();
+        }
+    }
+
+    @Override
+    public void onConnected(Bundle connectionHint) {
+        mPersonListView.setAdapter(mListAdapter);
+        mPlusClient.loadVisiblePeople(this, null);
+    }
+
+    @Override
+    public void onDisconnected() {
+        mPersonListView.setAdapter(null);
+        mPlusClient.connect();
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult result) {
+        if (mResolvingError) {
+            return;
+        }
+
+        mPersonListView.setAdapter(null);
+        try {
+            result.startResolutionForResult(this, REQUEST_CODE_SIGN_IN);
+            mResolvingError = true;
+        } catch (IntentSender.SendIntentException e) {
+            // Get another pending intent to run.
+            mPlusClient.connect();
+        }
+    }
+
+    @Override
+    public void onCancel(DialogInterface dialogInterface) {
+        Log.e(TAG, "Unable to sign the user in.");
+        finish();
     }
 }

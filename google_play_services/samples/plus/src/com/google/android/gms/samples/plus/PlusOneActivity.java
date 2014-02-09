@@ -19,7 +19,6 @@ package com.google.android.gms.samples.plus;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
 import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
-import com.google.android.gms.plus.PlusClient;
 import com.google.android.gms.plus.PlusOneButton;
 
 import android.app.Activity;
@@ -35,7 +34,6 @@ public class PlusOneActivity extends Activity
     // The request code must be 0 or higher.
     private static final int PLUS_ONE_REQUEST_CODE = 0;
 
-    private PlusClient mPlusClient;
     private PlusOneButton mPlusOneSmallButton;
     private PlusOneButton mPlusOneMediumButton;
     private PlusOneButton mPlusOneTallButton;
@@ -46,11 +44,6 @@ public class PlusOneActivity extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.plus_one_activity);
-
-        // The +1 button does not require scopes.
-        mPlusClient = new PlusClient.Builder(this, this, this)
-                .clearScopes()
-                .build();
 
         /*
          * The {@link PlusOneButton} can be configured in code, but in this example we
@@ -69,26 +62,14 @@ public class PlusOneActivity extends Activity
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        mPlusClient.connect();
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
         // Refresh the state of the +1 button each time we receive focus.
-        mPlusOneSmallButton.initialize(mPlusClient, URL, PLUS_ONE_REQUEST_CODE);
-        mPlusOneMediumButton.initialize(mPlusClient, URL, PLUS_ONE_REQUEST_CODE);
-        mPlusOneTallButton.initialize(mPlusClient, URL, PLUS_ONE_REQUEST_CODE);
-        mPlusOneStandardButton.initialize(mPlusClient, URL, PLUS_ONE_REQUEST_CODE);
-        mPlusOneStandardButtonWithAnnotation.initialize(mPlusClient, URL, PLUS_ONE_REQUEST_CODE);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mPlusClient.disconnect();
+        mPlusOneSmallButton.initialize(URL, PLUS_ONE_REQUEST_CODE);
+        mPlusOneMediumButton.initialize(URL, PLUS_ONE_REQUEST_CODE);
+        mPlusOneTallButton.initialize(URL, PLUS_ONE_REQUEST_CODE);
+        mPlusOneStandardButton.initialize(URL, PLUS_ONE_REQUEST_CODE);
+        mPlusOneStandardButtonWithAnnotation.initialize(URL, PLUS_ONE_REQUEST_CODE);
     }
 
     @Override

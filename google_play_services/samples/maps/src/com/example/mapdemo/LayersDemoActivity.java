@@ -44,6 +44,7 @@ public class LayersDemoActivity extends FragmentActivity implements OnItemSelect
 
     private CheckBox mTrafficCheckbox;
     private CheckBox mMyLocationCheckbox;
+    private CheckBox mBuildingsCheckbox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public class LayersDemoActivity extends FragmentActivity implements OnItemSelect
 
         mTrafficCheckbox = (CheckBox) findViewById(R.id.traffic);
         mMyLocationCheckbox = (CheckBox) findViewById(R.id.my_location);
+        mBuildingsCheckbox = (CheckBox) findViewById(R.id.buildings);
 
         setUpMapIfNeeded();
     }
@@ -70,6 +72,7 @@ public class LayersDemoActivity extends FragmentActivity implements OnItemSelect
         if (mMap != null) {
             updateTraffic();
             updateMyLocation();
+            updateBuildings();
         }
     }
 
@@ -116,6 +119,19 @@ public class LayersDemoActivity extends FragmentActivity implements OnItemSelect
         mMap.setMyLocationEnabled(mMyLocationCheckbox.isChecked());
     }
 
+    /**
+     * Called when the Buildings checkbox is clicked.
+     */
+    public void onBuildingsToggled(View view) {
+        updateBuildings();
+    }
+
+    private void updateBuildings() {
+        if (!checkReady()) {
+            return;
+        }
+        mMap.setBuildingsEnabled(mBuildingsCheckbox.isChecked());
+    }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 

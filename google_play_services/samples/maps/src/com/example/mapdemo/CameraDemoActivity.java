@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 /**
@@ -57,16 +58,28 @@ public class CameraDemoActivity extends FragmentActivity {
 
     private GoogleMap mMap;
 
+    private CompoundButton mAnimateToggle;
+    private CompoundButton mCustomDurationToggle;
+    private SeekBar mCustomDurationBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camera_demo);
+
+        mAnimateToggle = (CompoundButton) findViewById(R.id.animate);
+        mCustomDurationToggle = (CompoundButton) findViewById(R.id.duration_toggle);
+        mCustomDurationBar = (SeekBar) findViewById(R.id.duration_bar);
+
+        updateEnabledState();
+
         setUpMapIfNeeded();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        updateEnabledState();
         setUpMapIfNeeded();
     }
 
@@ -200,6 +213,29 @@ public class CameraDemoActivity extends FragmentActivity {
         changeCamera(CameraUpdateFactory.scrollBy(0, SCROLL_BY_PX));
     }
 
+    /**
+     * Called when the animate button is toggled
+     */
+    public void onToggleAnimate(View view) {
+        updateEnabledState();
+    }
+
+    /**
+     * Called when the custom duration checkbox is toggled
+     */
+    public void onToggleCustomDuration(View view) {
+        updateEnabledState();
+    }
+
+    /**
+     * Update the enabled state of the custom duration controls.
+     */
+    private void updateEnabledState() {
+        mCustomDurationToggle.setEnabled(mAnimateToggle.isChecked());
+        mCustomDurationBar
+            .setEnabled(mAnimateToggle.isChecked() && mCustomDurationToggle.isChecked());
+    }
+
     private void changeCamera(CameraUpdate update) {
         changeCamera(update, null);
     }
@@ -209,9 +245,14 @@ public class CameraDemoActivity extends FragmentActivity {
      * animate toggle button.
      */
     private void changeCamera(CameraUpdate update, CancelableCallback callback) {
-        boolean animated = ((CompoundButton) findViewById(R.id.animate)).isChecked();
-        if (animated) {
-            mMap.animateCamera(update, callback);
+        if (mAnimateToggle.isChecked()) {
+            if (mCustomDurationToggle.isChecked()) {
+                int duration = mCustomDurationBar.getProgress();
+                // The duration must be strictly positive so we make it at least 1.
+                mMap.animateCamera(update, Math.max(duration, 1), callback);
+            } else {
+                mMap.animateCamera(update, callback);
+            }
         } else {
             mMap.moveCamera(update);
         }

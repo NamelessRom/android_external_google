@@ -73,9 +73,14 @@
 
 
 
+
+
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width" />
 
 <link rel="shortcut icon" type="image/x-icon" href="../../../../../../../favicon.ico" />
 <title>Marker | Android Developers</title>
@@ -93,19 +98,32 @@ type="text/css">
 
 <!-- JAVASCRIPT -->
 <script src="http://www.google.com/jsapi" type="text/javascript"></script>
-<script src="../../../../../../../assets/js/global-libraries-combined.js" type="text/javascript"></script>
+<script src="../../../../../../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
 <script type="text/javascript">
   var toRoot = "../../../../../../../";
+  var metaTags = [];
+  var devsite = false;
 </script>
 <script src="../../../../../../../assets/js/docs.js" type="text/javascript"></script>
 
-<script src="../../../../../../../navtree_data.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5831155-1']);
+  _gaq.push(['_trackPageview']);
 
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
 </head>
 <body class="gc-documentation 
   develop" itemscope itemtype="http://schema.org/Article">
   <div id="doc-api-level" class="" style="display:none"></div>
   <a name="top"></a>
+
+<a name="top"></a>
 
     <!-- Header -->
     <div id="header">
@@ -121,25 +139,25 @@ type="text/css">
           </div>
             <ul class="nav-x col-9">
                 <li class="design">
-                  <a href="../../../../../../../design/index.html" 
-                  zh-TW-lang="設計"
-                  zh-CN-lang="设计"
+                  <a href="../../../../../../../design/index.html"
+                  zh-tw-lang="設計"
+                  zh-cn-lang="设计"
                   ru-lang="Проектирование"
                   ko-lang="디자인"
                   ja-lang="設計"
                   es-lang="Diseñar"               
                   >Design</a></li>
-                <li class="develop"><a href="../../../../../../../develop/index.html" class="selected"
-                  zh-TW-lang="開發"
-                  zh-CN-lang="开发"
+                <li class="develop"><a href="../../../../../../../develop/index.html"
+                  zh-tw-lang="開發"
+                  zh-cn-lang="开发"
                   ru-lang="Разработка"
                   ko-lang="개발"
                   ja-lang="開発"
                   es-lang="Desarrollar"               
                   >Develop</a></li>
-                <li class="distribute last"><a href="../../../../../../../distribute/index.html" 
-                  zh-TW-lang="發佈"
-                  zh-CN-lang="分发"
+                <li class="distribute last"><a href="../../../../../../../distribute/index.html"
+                  zh-tw-lang="發佈"
+                  zh-cn-lang="分发"
                   ru-lang="Распространение"
                   ko-lang="배포"
                   ja-lang="配布"
@@ -167,27 +185,12 @@ type="text/css">
         <li class="active"><a>Android Developers</a></li>
         <li><a href="http://source.android.com">Android Open Source Project</a></li>
       </ul>
-      <!-- <div class="header">Support</div>
-      <ul>
-        <li><a href="../../../../../../../support.html">Developer Support</a></li>
-      </ul> -->
-      <div class="header">Languages</div>
-        <div id="language" class="locales">
-          <select name="language" onChange="changeLangPref(this.value, true)">
-              <option value="en">English</option>
-              <option value="es">Español</option>
-              <option value="ja">日本語</option>
-              <option value="ko">한국어</option>
-              <option value="ru">Русский</option>
-              <option value="zh-CN">中文 (中国)</option>
-              <option value="zh-TW">中文 (台灣)</option>
-          </select>
-        </div>
-      <script type="text/javascript">
-        <!--  
-        loadLangPref();  
-          //-->
-      </script>
+      
+      
+      
+      
+
+
       <br class="clearfix" />
     </div>
     <div class="bottom"></div>
@@ -208,13 +211,36 @@ onkeyup="return search_changed(event, false, '../../../../../../../')" />
         <div class="right"></div>
     </div>
   </div>
-  <div id="search_filtered_wrapper">
-    <div id="search_filtered_div" class="no-display">
-        <ul id="search_filtered">
-        </ul>
+
+  <div class="search_filtered_wrapper reference">
+    <div class="suggest-card reference no-display">
+      <ul class="search_filtered">
+      </ul>
     </div>
   </div>
-  
+
+  <div class="search_filtered_wrapper docs">
+    <div class="suggest-card dummy no-display">&nbsp;</div>
+    <div class="suggest-card develop no-display">
+      <ul class="search_filtered">
+      </ul>
+      <div class="child-card guides no-display">
+      </div>
+      <div class="child-card training no-display">
+      </div>
+      <div class="child-card samples no-display">
+      </div>
+    </div>
+    <div class="suggest-card design no-display">
+      <ul class="search_filtered">
+      </ul>
+    </div>
+    <div class="suggest-card distribute no-display">
+      <ul class="search_filtered">
+      </ul>
+    </div>
+  </div>
+
   </div>
   <!-- /New Search>
           
@@ -235,32 +261,32 @@ onkeyup="return search_changed(event, false, '../../../../../../../')" />
                     <li class="develop">
                       <ul>
                         <li><a href="../../../../../../../training/index.html"
-                          zh-TW-lang="訓練課程"
-                          zh-CN-lang="培训"
+                          zh-tw-lang="訓練課程"
+                          zh-cn-lang="培训"
                           ru-lang="Курсы"
                           ko-lang="교육"
                           ja-lang="トレーニング"
                           es-lang="Capacitación"               
                           >Training</a></li>
-                        <li><a href="../../../../../../../guide/components/index.html"
-                          zh-TW-lang="API 指南"
-                          zh-CN-lang="API 指南"
+                        <li><a href="../../../../../../../guide/index.html"
+                          zh-tw-lang="API 指南"
+                          zh-cn-lang="API 指南"
                           ru-lang="Руководства по API"
                           ko-lang="API 가이드"
                           ja-lang="API ガイド"
                           es-lang="Guías de la API"               
                           >API Guides</a></li>
                         <li><a href="../../../../../../../reference/packages.html"
-                          zh-TW-lang="參考資源"
-                          zh-CN-lang="参考"
+                          zh-tw-lang="參考資源"
+                          zh-cn-lang="参考"
                           ru-lang="Справочник"
                           ko-lang="참조문서"
                           ja-lang="リファレンス"
                           es-lang="Referencia"               
                           >Reference</a></li>
                         <li><a href="../../../../../../../tools/index.html"
-                          zh-TW-lang="相關工具"
-                          zh-CN-lang="工具"
+                          zh-tw-lang="相關工具"
+                          zh-cn-lang="工具"
                           ru-lang="Инструменты"
                           ko-lang="도구"
                           ja-lang="ツール"
@@ -270,6 +296,7 @@ onkeyup="return search_changed(event, false, '../../../../../../../')" />
                         </li>
                         <li><a href="../../../../../../../google/index.html">Google Services</a>
                         </li>
+                        
                       </ul>
                     </li>
                     <li class="distribute last">
@@ -296,52 +323,56 @@ onkeyup="return search_changed(event, false, '../../../../../../../')" />
   </div>
     
     
-    
-
+  
     <!-- Secondary x-nav -->
     <div id="nav-x">
         <div class="wrap">
             <ul class="nav-x col-9 develop" style="width:100%">
-                <li><a href="../../../../../../../training/index.html" 
-                  zh-TW-lang="訓練課程"
-                  zh-CN-lang="培训"
+                <li class="training"><a href="../../../../../../../training/index.html"
+                  zh-tw-lang="訓練課程"
+                  zh-cn-lang="培训"
                   ru-lang="Курсы"
                   ko-lang="교육"
                   ja-lang="トレーニング"
                   es-lang="Capacitación"               
                   >Training</a></li>
-                <li><a href="../../../../../../../guide/components/index.html" 
-                  zh-TW-lang="API 指南"
-                  zh-CN-lang="API 指南"
+                <li class="guide"><a href="../../../../../../../guide/index.html"
+                  zh-tw-lang="API 指南"
+                  zh-cn-lang="API 指南"
                   ru-lang="Руководства по API"
                   ko-lang="API 가이드"
                   ja-lang="API ガイド"
                   es-lang="Guías de la API"               
                   >API Guides</a></li>
-                <li><a href="../../../../../../../reference/packages.html" class="selected"
-                  zh-TW-lang="參考資源"
-                  zh-CN-lang="参考"
+                <li class="reference"><a href="../../../../../../../reference/packages.html"
+                  zh-tw-lang="參考資源"
+                  zh-cn-lang="参考"
                   ru-lang="Справочник"
                   ko-lang="참조문서"
                   ja-lang="リファレンス"
                   es-lang="Referencia"               
                   >Reference</a></li>
-                <li><a href="../../../../../../../tools/index.html" 
-                  zh-TW-lang="相關工具"
-                  zh-CN-lang="工具"
+                <li class="tools"><a href="../../../../../../../tools/index.html"
+                  zh-tw-lang="相關工具"
+                  zh-cn-lang="工具"
                   ru-lang="Инструменты"
                   ko-lang="도구"
                   ja-lang="ツール"
                   es-lang="Herramientas"
                   >Tools</a></li>
-                <li><a href="../../../../../../../google/index.html" 
+                <li class="google"><a href="../../../../../../../google/index.html"
                   >Google Services</a>
                 </li>
+                
             </ul>
         </div>
         
     </div>
     <!-- /Sendondary x-nav -->
+  
+
+
+
 
   
 
@@ -353,7 +384,8 @@ onkeyup="return search_changed(event, false, '../../../../../../../')" />
 <a class="totop" href="#top" data-g-event="left-nav-top">to top</a>
       <div id="api-nav-header">
         <div id="api-level-toggle">
-          <label for="apiLevelCheckbox" class="disabled">API level: </label>
+          <label for="apiLevelCheckbox" class="disabled"
+            title="Select your target API level to dim unavailable APIs">API level: </label>
           <div class="select-wrapper">
             <select id="apiLevelSelector">
               <!-- option elements added by buildApiLevelSelector() -->
@@ -373,9 +405,23 @@ onkeyup="return search_changed(event, false, '../../../../../../../')" />
             <div id="packages-nav" class="scroll-pane">
 
               <ul>
-              	
+                
     <li class="api apilevel-">
   <a href="../../../../../../../reference/com/google/android/gms/package-summary.html">com.google.android.gms</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../reference/com/google/android/gms/ads/package-summary.html">com.google.android.gms.ads</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../reference/com/google/android/gms/ads/doubleclick/package-summary.html">com.google.android.gms.ads.doubleclick</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../reference/com/google/android/gms/ads/identifier/package-summary.html">com.google.android.gms.ads.identifier</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../reference/com/google/android/gms/ads/mediation/package-summary.html">com.google.android.gms.ads.mediation</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../reference/com/google/android/gms/ads/mediation/admob/package-summary.html">com.google.android.gms.ads.mediation.admob</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../reference/com/google/android/gms/ads/mediation/customevent/package-summary.html">com.google.android.gms.ads.mediation.customevent</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../reference/com/google/android/gms/ads/search/package-summary.html">com.google.android.gms.ads.search</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../../reference/com/google/android/gms/appstate/package-summary.html">com.google.android.gms.appstate</a></li>
     <li class="api apilevel-">
@@ -383,9 +429,21 @@ onkeyup="return search_changed(event, false, '../../../../../../../')" />
     <li class="api apilevel-">
   <a href="../../../../../../../reference/com/google/android/gms/common/package-summary.html">com.google.android.gms.common</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../../../reference/com/google/android/gms/common/annotation/package-summary.html">com.google.android.gms.common.annotation</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../reference/com/google/android/gms/common/api/package-summary.html">com.google.android.gms.common.api</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../../../reference/com/google/android/gms/common/data/package-summary.html">com.google.android.gms.common.data</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../../reference/com/google/android/gms/common/images/package-summary.html">com.google.android.gms.common.images</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../reference/com/google/android/gms/drive/package-summary.html">com.google.android.gms.drive</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../reference/com/google/android/gms/drive/metadata/package-summary.html">com.google.android.gms.drive.metadata</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../reference/com/google/android/gms/drive/query/package-summary.html">com.google.android.gms.drive.query</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../reference/com/google/android/gms/drive/widget/package-summary.html">com.google.android.gms.drive.widget</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../../reference/com/google/android/gms/games/package-summary.html">com.google.android.gms.games</a></li>
     <li class="api apilevel-">
@@ -396,6 +454,8 @@ onkeyup="return search_changed(event, false, '../../../../../../../')" />
   <a href="../../../../../../../reference/com/google/android/gms/games/multiplayer/package-summary.html">com.google.android.gms.games.multiplayer</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../../reference/com/google/android/gms/games/multiplayer/realtime/package-summary.html">com.google.android.gms.games.multiplayer.realtime</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../reference/com/google/android/gms/games/multiplayer/turnbased/package-summary.html">com.google.android.gms.games.multiplayer.turnbased</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../../reference/com/google/android/gms/gcm/package-summary.html">com.google.android.gms.gcm</a></li>
     <li class="api apilevel-">
@@ -412,6 +472,8 @@ onkeyup="return search_changed(event, false, '../../../../../../../')" />
   <a href="../../../../../../../reference/com/google/android/gms/plus/model/moments/package-summary.html">com.google.android.gms.plus.model.moments</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../../reference/com/google/android/gms/plus/model/people/package-summary.html">com.google.android.gms.plus.model.people</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../reference/com/google/android/gms/wallet/package-summary.html">com.google.android.gms.wallet</a></li>
               </ul><br/>
 
             </div> <!-- end packages-nav -->
@@ -421,6 +483,7 @@ onkeyup="return search_changed(event, false, '../../../../../../../')" />
 
 
             <ul>
+              
               
     <li><h2>Interfaces</h2>
       <ul>
@@ -505,11 +568,6 @@ onkeyup="return search_changed(event, false, '../../../../../../../')" />
     </script>
 
      
-    <script>
-      $(document).ready(function() {
-        changeDocLang(getLangPref());
-        });
-    </script>
 
 
 
@@ -645,6 +703,18 @@ Summary:
  <dt>Visibility</dt>
  <dd>By default, the marker is visible. To make the marker invisible, set this property to
  <code>false</code>. You can change this value at any time.</dd>
+ <dt>Flat or Billboard</dt>
+ <dd>If the marker is flat against the map, it will remain stuck to the map as the camera rotates
+ and tilts but will still remain the same size as the camera zooms, unlike a
+ <code><a href="../../../../../../../reference/com/google/android/gms/maps/model/GroundOverlay.html">GroundOverlay</a></code>. If the marker is a billboard, it will always be drawn facing the camera
+ and will rotate and tilt with the camera.  The default is a billboard (<code>false</code>)</dd>
+ <dt>Rotation</dt>
+ <dd>The rotation of the marker in degrees clockwise about the marker's anchor point. The
+ axis of rotation is perpendicular to the marker. A rotation of 0 corresponds to the default
+ position of the marker. When the marker is flat on the map, the default position is North
+ aligned and the rotation is such that the marker always remains flat on the map. When the
+ marker is a billboard, the default position is pointing up and the rotation is such that the
+ marker is always facing the camera. The default value is 0.</dd>
  </dl>
  <h3>Example</h3>
 
@@ -744,12 +814,12 @@ Summary:
             
             
             
-            String</nobr>
+            float</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../../reference/com/google/android/gms/maps/model/Marker.html#getId()">getId</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../../reference/com/google/android/gms/maps/model/Marker.html#getAlpha()">getAlpha</a></span>()</nobr>
         
-        <div class="jd-descrdiv">Gets this marker's id.</div>
+        <div class="jd-descrdiv">Gets the alpha of the marker.</div>
   
   </td></tr>
 
@@ -762,12 +832,48 @@ Summary:
             
             
             
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../reference/com/google/android/gms/maps/model/Marker.html#getId()">getId</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets this marker's id.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
             <a href="../../../../../../../reference/com/google/android/gms/maps/model/LatLng.html">LatLng</a></nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../../../../reference/com/google/android/gms/maps/model/Marker.html#getPosition()">getPosition</a></span>()</nobr>
         
         <div class="jd-descrdiv">Returns the position of the marker.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            float</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../reference/com/google/android/gms/maps/model/Marker.html#getRotation()">getRotation</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the rotation of the marker.</div>
   
   </td></tr>
 
@@ -871,9 +977,9 @@ Summary:
             boolean</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../../reference/com/google/android/gms/maps/model/Marker.html#isInfoWindowShown()">isInfoWindowShown</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../../reference/com/google/android/gms/maps/model/Marker.html#isFlat()">isFlat</a></span>()</nobr>
         
-        <div class="jd-descrdiv">Returns whether the info window is currently shown above this marker.</div>
+        <div class="jd-descrdiv">Gets the flat setting of the Marker.</div>
   
   </td></tr>
 
@@ -889,8 +995,44 @@ Summary:
             boolean</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../reference/com/google/android/gms/maps/model/Marker.html#isInfoWindowShown()">isInfoWindowShown</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Returns whether the info window is currently shown above this marker.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../../../../reference/com/google/android/gms/maps/model/Marker.html#isVisible()">isVisible</a></span>()</nobr>
         
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../reference/com/google/android/gms/maps/model/Marker.html#remove()">remove</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Removes this marker from the map.</div>
+  
   </td></tr>
 
 
@@ -905,9 +1047,9 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../../reference/com/google/android/gms/maps/model/Marker.html#remove()">remove</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../../reference/com/google/android/gms/maps/model/Marker.html#setAlpha(float)">setAlpha</a></span>(float alpha)</nobr>
         
-        <div class="jd-descrdiv">Removes this marker from the map.</div>
+        <div class="jd-descrdiv">Sets the alpha (opacity) of the marker.</div>
   
   </td></tr>
 
@@ -959,9 +1101,47 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../reference/com/google/android/gms/maps/model/Marker.html#setFlat(boolean)">setFlat</a></span>(boolean flat)</nobr>
+        
+        <div class="jd-descrdiv">Sets whether this marker should be flat against the map <code>true</code> or a billboard facing
+ the camera <code>false</code>.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../../../../reference/com/google/android/gms/maps/model/Marker.html#setIcon(com.google.android.gms.maps.model.BitmapDescriptor)">setIcon</a></span>(<a href="../../../../../../../reference/com/google/android/gms/maps/model/BitmapDescriptor.html">BitmapDescriptor</a> icon)</nobr>
         
         <div class="jd-descrdiv">Sets the icon for the marker.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../reference/com/google/android/gms/maps/model/Marker.html#setInfoWindowAnchor(float, float)">setInfoWindowAnchor</a></span>(float anchorU, float anchorV)</nobr>
+        
+        <div class="jd-descrdiv">Specifies the point in the marker image at which to anchor the info window when it is
+ displayed.</div>
   
   </td></tr>
 
@@ -995,6 +1175,24 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../reference/com/google/android/gms/maps/model/Marker.html#setRotation(float)">setRotation</a></span>(float rotation)</nobr>
+        
+        <div class="jd-descrdiv">Sets the rotation of the marker in degrees clockwise about the marker's anchor point.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../../../../reference/com/google/android/gms/maps/model/Marker.html#setSnippet(java.lang.String)">setSnippet</a></span>(String snippet)</nobr>
         
         <div class="jd-descrdiv">Sets the snippet of the marker.</div>
@@ -1003,7 +1201,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1021,7 +1219,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1039,7 +1237,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1343,6 +1541,40 @@ From class
 </div>
 
 
+<A NAME="getAlpha()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        float
+      </span>
+      <span class="sympad">getAlpha</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the alpha of the marker.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>the alpha of the marker in the range [0, 1].
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
 <A NAME="getId()"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -1366,12 +1598,7 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Gets this marker's id.
- <p>
- When a map is restored from a <code><a href="../../../../../../../reference/android/os/Bundle.html">Bundle</a></code>, markers that were on that map are
- also restored. However, those markers will then be represented by different <code>Marker</code>
- objects. A marker's id can be used to retrieve the new instance of a Marker object after
- such restoration.</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Gets this marker's id. The id will be unique amongst all Markers on a map.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>this marker's id.
@@ -1409,6 +1636,40 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>A <code><a href="../../../../../../../reference/com/google/android/gms/maps/model/LatLng.html">LatLng</a></code> object specifying the marker's current position.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getRotation()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        float
+      </span>
+      <span class="sympad">getRotation</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the rotation of the marker.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>the rotation of the marker in degrees clockwise from the default position.
 </li></ul>
   </div>
 
@@ -1580,6 +1841,41 @@ From class
 </div>
 
 
+<A NAME="isFlat()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        boolean
+      </span>
+      <span class="sympad">isFlat</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the flat setting of the Marker.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li><code>true</code> if the marker is flat against the map; <code>false</code> if the marker
+ should face the camera.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
 <A NAME="isInfoWindowShown()"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -1665,6 +1961,37 @@ From class
       
   <div class="jd-tagdata jd-tagdescr"><p>Removes this marker from the map. After a marker has been removed, the behavior of all its
  methods is undefined.
+</p></div>
+
+    </div>
+</div>
+
+
+<A NAME="setAlpha(float)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setAlpha</span>
+      <span class="normal">(float alpha)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the alpha (opacity) of the marker. This is a value from 0 to 1, where 0 means the marker
+ is completely transparent and 1 means the marker is completely opaque.
 </p></div>
 
     </div>
@@ -1774,6 +2101,37 @@ From class
 </div>
 
 
+<A NAME="setFlat(boolean)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setFlat</span>
+      <span class="normal">(boolean flat)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets whether this marker should be flat against the map <code>true</code> or a billboard facing
+ the camera <code>false</code>.
+</p></div>
+
+    </div>
+</div>
+
+
 <A NAME="setIcon(com.google.android.gms.maps.model.BitmapDescriptor)"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -1813,6 +2171,54 @@ From class
 </div>
 
 
+<A NAME="setInfoWindowAnchor(float, float)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setInfoWindowAnchor</span>
+      <span class="normal">(float anchorU, float anchorV)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Specifies the point in the marker image at which to anchor the info window when it is
+ displayed. This is specified in the same coordinate system as the anchor. See
+ <code><a href="../../../../../../../reference/com/google/android/gms/maps/model/Marker.html#setAnchor(float, float)">setAnchor(float, float)</a></code> for more details.  The default is the top middle of the
+ image.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>anchorU</td>
+          <td>u-coordinate of the info window anchor, as a ratio of the image width (in the
+        range [0, 1])</td>
+        </tr>
+        <tr>
+          <th>anchorV</td>
+          <td>v-coordinate of the info window anchor, as a ratio of the image height (in the
+        range [0, 1])
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
 <A NAME="setPosition(com.google.android.gms.maps.model.LatLng)"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -1837,6 +2243,38 @@ From class
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p>Sets the position of the marker.
+</p></div>
+
+    </div>
+</div>
+
+
+<A NAME="setRotation(float)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setRotation</span>
+      <span class="normal">(float rotation)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the rotation of the marker in degrees clockwise about the marker's anchor point. The
+ axis of rotation is perpendicular to the marker. A rotation of 0 corresponds to the default
+ position of the marker.
 </p></div>
 
     </div>
@@ -1995,7 +2433,9 @@ From class
   </div>
   <div id="build_info">
     
-    Android &nbsp;r &mdash; 12 May 2013  3:45
+    Android &nbsp;r &mdash; 
+<script src="../../../../../../../timestamp.js" type="text/javascript"></script>
+<script>document.write(BUILD_TIMESTAMP)</script>
 
   </div>
 
@@ -2018,41 +2458,6 @@ From class
 
 
 
-
-<!-- Grid - for dev 
-<script type="text/javascript">
-
-window.gOverride = {
-		gColor: '#FF0000',
-		pColor: '#EEEEEE',
-		gOpacity: 0.10,
-		pOpacity: 0.40,
-		pHeight: 16,
-		pOffset: 2,
-		gColumns:16,
-		gEnabled:false,
-		pEnabled:false
-	}
-</script>
-	
-<link href="../../../../../../../assets/js/grid/960.gridder.css" rel="stylesheet" type="text/css">
-<script src="../../../../../../../assets/js/grid/960.gridder.js" type="text/javascript"></script>
--->
-
-
-
-
-
-<script type="text/javascript">
-init(); /* initialize android-developer-docs.js */
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-
-<script type="text/javascript">
-  var pageTracker = _gat._getTracker("UA-5831155-1");
-  pageTracker._trackPageview();
-</script>
 
 
 

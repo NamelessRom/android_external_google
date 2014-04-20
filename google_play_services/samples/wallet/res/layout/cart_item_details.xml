@@ -5,13 +5,14 @@
     android:layout_marginLeft="@dimen/padding_large"
     android:layout_marginRight="@dimen/padding_large" >
 
-    <TableRow>
+    <TableRow android:layout_marginTop="@dimen/margin_large">
 
         <TextView
             android:id="@+id/text_item_name"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:drawablePadding="@dimen/padding_small"
             android:gravity="center_vertical" />
 
         <TextView

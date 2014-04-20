@@ -31,6 +31,11 @@ import android.view.MenuItem;
 public class ItemDetailsActivity extends FragmentActivity {
     private Menu mMenu;
 
+    /**
+     *  Request code used to launch LoginActivity
+     */
+    private static final int REQUEST_USER_LOGIN = 1000;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +45,7 @@ public class ItemDetailsActivity extends FragmentActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-            case LoginActivity.REQUEST_USER_LOGIN:
+            case REQUEST_USER_LOGIN:
                 if (resultCode == RESULT_OK) {
                     invalidateOptionsMenu();
                 }
@@ -56,7 +61,7 @@ public class ItemDetailsActivity extends FragmentActivity {
 
         mMenu = menu;
         MenuInflater inflater = getMenuInflater();
-        if (((XyzApplication) getApplication()).isLoggedIn()) {
+        if (((BikestoreApplication) getApplication()).isLoggedIn()) {
             inflater.inflate(R.menu.menu_logout, menu);
         } else {
             inflater.inflate(R.menu.menu_login, menu);
@@ -69,12 +74,14 @@ public class ItemDetailsActivity extends FragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.login:
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivityForResult(intent, LoginActivity.REQUEST_USER_LOGIN);
+                Intent loginIntent = new Intent(this, LoginActivity.class);
+                loginIntent.putExtra(LoginActivity.EXTRA_ACTION, LoginActivity.Action.LOGIN);
+                startActivityForResult(loginIntent, REQUEST_USER_LOGIN);
                 return true;
             case R.id.logout:
-                ((XyzApplication) getApplication()).logout();
-                invalidateOptionsMenu();
+                Intent logoutIntent = new Intent(this, LoginActivity.class);
+                logoutIntent.putExtra(LoginActivity.EXTRA_ACTION, LoginActivity.Action.LOGOUT);
+                startActivityForResult(logoutIntent, REQUEST_USER_LOGIN);
                 return true;
             default:
                 return false;
@@ -90,7 +97,7 @@ public class ItemDetailsActivity extends FragmentActivity {
             super.invalidateOptionsMenu();
         } else if (mMenu != null) {
             MenuInflater inflater = getMenuInflater();
-            if (((XyzApplication) getApplication()).isLoggedIn()) {
+            if (((BikestoreApplication) getApplication()).isLoggedIn()) {
                 inflater.inflate(R.menu.menu_logout, mMenu);
             } else {
                 inflater.inflate(R.menu.menu_login, mMenu);

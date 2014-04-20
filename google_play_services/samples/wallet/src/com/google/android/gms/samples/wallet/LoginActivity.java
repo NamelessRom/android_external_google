@@ -17,17 +17,31 @@
 package com.google.android.gms.samples.wallet;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 
-public class LoginActivity extends XyzWalletFragmentActivity {
+public class LoginActivity extends BikestoreFragmentActivity {
 
-    /**
-     *  Request code used to launch LoginActivity
-     */
-    protected static final int REQUEST_USER_LOGIN = 1005;
+    public static final String EXTRA_ACTION = "EXTRA_ACTION";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        int loginAction = getIntent().getIntExtra(EXTRA_ACTION, Action.LOGIN);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentById(R.id.frag);
+        if (fragment == null) {
+            fragment = LoginFragment.newInstance(loginAction);
+            fragmentManager.beginTransaction()
+                .add(R.id.frag, fragment)
+                .commit();
+        }
+    }
+
+    public static class Action {
+        public static final int LOGIN = 2000;
+        public static final int LOGOUT = 2001;
+        private Action() {}
     }
 }

@@ -36,7 +36,7 @@
         android:layout_marginBottom="@dimen/element_space" />
 
     <EditText
-        android:id="@+id/entry_login_xyz"
+        android:id="@+id/entry_login_bikestore"
         android:hint="@string/login_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,8 +51,8 @@
         android:layout_marginBottom="@dimen/element_space" />
 
     <Button
-        android:id="@+id/button_login_xyz"
-        android:text="@string/login_xyz"
+        android:id="@+id/button_login_bikestore"
+        android:text="@string/login_bikestore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

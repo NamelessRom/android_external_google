@@ -21,12 +21,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/promotion"
-        layout="@layout/promotion" />
-
-    <include layout="@layout/horizontal_divider" />
-
     <ListView
         android:id="@android:id/list"
         android:divider="@drawable/divider"

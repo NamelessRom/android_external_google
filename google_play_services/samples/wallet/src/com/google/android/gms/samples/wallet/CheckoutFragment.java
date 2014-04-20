@@ -16,9 +16,10 @@
 
 package com.google.android.gms.samples.wallet;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wallet.MaskedWallet;
 import com.google.android.gms.wallet.MaskedWalletRequest;
-import com.google.android.gms.wallet.WalletClient;
+import com.google.android.gms.wallet.Wallet;
 import com.google.android.gms.wallet.WalletConstants;
 
 import android.app.Activity;
@@ -39,17 +40,17 @@ import android.widget.Toast;
  * user's shopping cart.  If the user decides to buy the item, they will be taken to
  * {@link ConfirmationActivity}, which handles requesting a full wallet and submitting the order.
  *
- * <p>When the customer visits this page, a {@link WalletClient} connection should be made in order
+ * <p>When the customer visits this page, a {@link GoogleApiClient} connection should be made in order
  * to interact with the Google Wallet service.  The client builds a {@link MaskedWalletRequest}
- * object, which is needed to request a {@link MaskedWallet} from the {@link WalletClient} when
+ * object, which is needed to request a {@link MaskedWallet} from the {@link Wallet} API when
  * the user taps the Buy with Google Wallet button.
  *
  * <p>
- * {@link WalletClient#loadMaskedWallet(MaskedWalletRequest, int)}
+ * {@link Wallet#loadMaskedWallet(GoogleApiClient, MaskedWalletRequest, int)}
  * will return a {@link MaskedWallet} to the Fragment's <code>onActivityResult</code> using the
  * specified <code>requestCode</code>.
  */
-public class CheckoutFragment extends XyzWalletFragment implements OnClickListener {
+public class CheckoutFragment extends BikestoreWalletFragment implements OnClickListener {
 
     /**
      *  Request code for logging in a user before continuing with the Google Wallet flow.
@@ -66,10 +67,7 @@ public class CheckoutFragment extends XyzWalletFragment implements OnClickListen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getActivity().getIntent();
-        if (intent != null) {
-            mErrorCode = intent.getIntExtra(WalletConstants.EXTRA_ERROR_CODE, 0);
-        }
+        mErrorCode = getActivity().getIntent().getIntExtra(WalletConstants.EXTRA_ERROR_CODE, 0);
         setHasOptionsMenu(true);
     }
 
@@ -92,7 +90,11 @@ public class CheckoutFragment extends XyzWalletFragment implements OnClickListen
 
         Drawable itemImage = getResources().getDrawable(itemInfo.imageResourceId);
         int imageSize = getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
-        itemImage.setBounds(0, 0, imageSize, imageSize);
+        int actualWidth = itemImage.getIntrinsicWidth();
+        int actualHeight = itemImage.getIntrinsicHeight();
+        int scaledHeight = imageSize;
+        int scaledWidth = (int) (((float) actualWidth / actualHeight) * scaledHeight);
+        itemImage.setBounds(0, 0, scaledWidth, scaledHeight);
         itemName.setCompoundDrawables(itemImage, null, null, null);
 
         TextView itemPrice = (TextView) view.findViewById(R.id.text_item_price);
@@ -103,7 +105,12 @@ public class CheckoutFragment extends XyzWalletFragment implements OnClickListen
         shippingLabel.setText(R.string.estimated_shipping);
         TextView estimatedShipping =
                 (TextView) view.findViewById(R.id.text_shipping_price);
-        estimatedShipping.setText(Util.formatPrice(getActivity(), itemInfo.shippingPriceMicros));
+        if ((mItemId == Constants.PROMOTION_ITEM) && getApplication().isAddressValidForPromo()) {
+            estimatedShipping.setText(Util.formatPrice(getActivity(), 0L));
+        } else {
+            estimatedShipping.setText(Util.formatPrice(getActivity(),
+                    itemInfo.shippingPriceMicros));
+        }
         TextView tax = (TextView) view.findViewById(R.id.text_tax_price);
         tax.setText(Util.formatPrice(getActivity(), itemInfo.taxMicros));
         TextView total = (TextView) view.findViewById(R.id.text_total_price);
@@ -128,7 +135,7 @@ public class CheckoutFragment extends XyzWalletFragment implements OnClickListen
     }
 
     private void continueCheckout() {
-        if (((XyzApplication) getActivity().getApplication()).isLoggedIn()) {
+        if (getApplication().isLoggedIn()) {
             buyWithGoogleWallet();
         } else {
             Intent intent = new Intent(getActivity(), LoginActivity.class);
@@ -149,13 +156,13 @@ public class CheckoutFragment extends XyzWalletFragment implements OnClickListen
     }
 
     private void loadMaskedWallet() {
-        if (mWalletClient.isConnected()) {
+        if (mGoogleApiClient.isConnected()) {
             mProgressDialog.show();
-            mWalletClient.loadMaskedWallet(createMaskedWalletRequest(),
+            Wallet.loadMaskedWallet(mGoogleApiClient, createMaskedWalletRequest(),
                     REQUEST_CODE_RESOLVE_LOAD_MASKED_WALLET);
         } else {
-            if (!mWalletClient.isConnected() && !mWalletClient.isConnecting()) {
-                mWalletClient.connect();
+            if (!mGoogleApiClient.isConnected() && !mGoogleApiClient.isConnecting()) {
+                mGoogleApiClient.connect();
             }
             mHandleMaskedWalletWhenReady = true;
         }
@@ -189,7 +196,7 @@ public class CheckoutFragment extends XyzWalletFragment implements OnClickListen
                 // call connect regardless of success or failure
                 // if the result was success, the connect should succeed
                 // if the result was not success, this should get a new connection result
-                mWalletClient.connect();
+                mGoogleApiClient.connect();
                 break;
             case REQUEST_CODE_RESOLVE_LOAD_MASKED_WALLET:
                 if (mProgressDialog.isShowing()) {

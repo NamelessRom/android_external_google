@@ -26,7 +26,7 @@
         android:layout_width="@dimen/image_thumbnail_size"
         android:layout_height="@dimen/image_thumbnail_size"
         android:scaleType="centerInside"
-        android:layout_marginRight="@dimen/padding_large" />
+        android:layout_marginRight="@dimen/padding_xlarge" />
 
     <LinearLayout
         android:orientation="vertical"

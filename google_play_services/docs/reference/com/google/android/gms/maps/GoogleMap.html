@@ -106,6 +106,13 @@ type="text/css">
 </script>
 <script src="../../../../../../assets/js/docs.js" type="text/javascript"></script>
 
+<!-- RESOURCES LIBRARY -->
+<script src="http://androiddevdocs-staging.appspot.com/ytblogger_lists_unified.js" type="text/javascript"></script>
+<script src="../../../../../../jd_lists_unified.js" type="text/javascript"></script>
+<script src="../../../../../../assets/js/jd_tag_helpers.js" type="text/javascript"></script>
+<link href="../../../../../../assets/css/resourcecards.css"  rel="stylesheet" type="text/css" />
+<script src="../../../../../../assets/js/resourcecards.js" type="text/javascript"></script>
+
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-5831155-1']);
@@ -423,9 +430,13 @@ onkeyup="return search_changed(event, false, '../../../../../../')" />
     <li class="api apilevel-">
   <a href="../../../../../../reference/com/google/android/gms/ads/search/package-summary.html">com.google.android.gms.ads.search</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../../reference/com/google/android/gms/analytics/package-summary.html">com.google.android.gms.analytics</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../../reference/com/google/android/gms/appstate/package-summary.html">com.google.android.gms.appstate</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../reference/com/google/android/gms/auth/package-summary.html">com.google.android.gms.auth</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../reference/com/google/android/gms/cast/package-summary.html">com.google.android.gms.cast</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../reference/com/google/android/gms/common/package-summary.html">com.google.android.gms.common</a></li>
     <li class="api apilevel-">
@@ -438,6 +449,8 @@ onkeyup="return search_changed(event, false, '../../../../../../')" />
   <a href="../../../../../../reference/com/google/android/gms/common/images/package-summary.html">com.google.android.gms.common.images</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../reference/com/google/android/gms/drive/package-summary.html">com.google.android.gms.drive</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../reference/com/google/android/gms/drive/events/package-summary.html">com.google.android.gms.drive.events</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../reference/com/google/android/gms/drive/metadata/package-summary.html">com.google.android.gms.drive.metadata</a></li>
     <li class="api apilevel-">
@@ -457,7 +470,13 @@ onkeyup="return search_changed(event, false, '../../../../../../')" />
     <li class="api apilevel-">
   <a href="../../../../../../reference/com/google/android/gms/games/multiplayer/turnbased/package-summary.html">com.google.android.gms.games.multiplayer.turnbased</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../../reference/com/google/android/gms/games/request/package-summary.html">com.google.android.gms.games.request</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../../reference/com/google/android/gms/gcm/package-summary.html">com.google.android.gms.gcm</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../reference/com/google/android/gms/identity/intents/package-summary.html">com.google.android.gms.identity.intents</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../reference/com/google/android/gms/identity/intents/model/package-summary.html">com.google.android.gms.identity.intents.model</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../reference/com/google/android/gms/location/package-summary.html">com.google.android.gms.location</a></li>
     <li class="selected api apilevel-">
@@ -472,6 +491,8 @@ onkeyup="return search_changed(event, false, '../../../../../../')" />
   <a href="../../../../../../reference/com/google/android/gms/plus/model/moments/package-summary.html">com.google.android.gms.plus.model.moments</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../reference/com/google/android/gms/plus/model/people/package-summary.html">com.google.android.gms.plus.model.people</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../reference/com/google/android/gms/tagmanager/package-summary.html">com.google.android.gms.tagmanager</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../reference/com/google/android/gms/wallet/package-summary.html">com.google.android.gms.wallet</a></li>
               </ul><br/>
@@ -633,7 +654,7 @@ Summary:
 
 
   
-    extends Object<br/>
+    extends <a href="http://developer.android.com/reference/java/lang/Object.html">Object</a><br/>
   
   
   
@@ -653,7 +674,7 @@ Summary:
 
     <tr>
          	
-        <td colspan="2" class="jd-inheritance-class-cell">java.lang.Object</td>
+        <td colspan="2" class="jd-inheritance-class-cell"><a href="http://developer.android.com/reference/java/lang/Object.html">java.lang.Object</a></td>
     </tr>
     
 
@@ -682,7 +703,7 @@ Summary:
  rather, you must obtain one from the <code>getMap()</code> method on a <code><a href="../../../../../../reference/com/google/android/gms/maps/MapFragment.html">MapFragment</a></code> or
  <code><a href="../../../../../../reference/com/google/android/gms/maps/MapView.html">MapView</a></code> that you have added to your application.
  <p>
- Note: Similar to a <code><a href="../../../../../../reference/android/view/View.html">View</a></code> object, a <code><a href="../../../../../../reference/com/google/android/gms/maps/GoogleMap.html">GoogleMap</a></code> can only be read
+ Note: Similar to a <code><a href="../../../../../../http://developer.android.com/reference/android/view/View.html">View</a></code> object, a <code><a href="../../../../../../reference/com/google/android/gms/maps/GoogleMap.html">GoogleMap</a></code> can only be read
  and modified from the main thread. Calling <code><a href="../../../../../../reference/com/google/android/gms/maps/GoogleMap.html">GoogleMap</a></code> methods from another thread will
  result in an exception.
  <p>
@@ -1217,7 +1238,7 @@ Summary:
             final
             
             
-            Location</nobr>
+            <a href="http://developer.android.com/reference/android/location/Location.html">Location</a></nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../../../reference/com/google/android/gms/maps/GoogleMap.html#getMyLocation()">getMyLocation</a></span>()</nobr>
@@ -1285,7 +1306,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../../../reference/com/google/android/gms/maps/GoogleMap.html#isBuildingsEnabled()">isBuildingsEnabled</a></span>()</nobr>
         
-        <div class="jd-descrdiv">Returns whether 3D buildings are enabled.</div>
+        <div class="jd-descrdiv">Returns whether 3D buildings layer is enabled.</div>
   
   </td></tr>
 
@@ -1687,7 +1708,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../reference/com/google/android/gms/maps/GoogleMap.html#snapshot(com.google.android.gms.maps.GoogleMap.SnapshotReadyCallback, android.graphics.Bitmap)">snapshot</a></span>(<a href="../../../../../../reference/com/google/android/gms/maps/GoogleMap.SnapshotReadyCallback.html">GoogleMap.SnapshotReadyCallback</a> callback, Bitmap bitmap)</nobr>
+        <span class="sympad"><a href="../../../../../../reference/com/google/android/gms/maps/GoogleMap.html#snapshot(com.google.android.gms.maps.GoogleMap.SnapshotReadyCallback, android.graphics.Bitmap)">snapshot</a></span>(<a href="../../../../../../reference/com/google/android/gms/maps/GoogleMap.SnapshotReadyCallback.html">GoogleMap.SnapshotReadyCallback</a> callback, <a href="http://developer.android.com/reference/android/graphics/Bitmap.html">Bitmap</a> bitmap)</nobr>
         
         <div class="jd-descrdiv">Takes a snapshot of the map.</div>
   
@@ -1753,7 +1774,7 @@ Summary:
           class="jd-expando-trigger-img" /></a>
 From class
 
-  java.lang.Object
+  <a href="http://developer.android.com/reference/java/lang/Object.html">java.lang.Object</a>
 
 <div id="inherited-methods-java.lang.Object">
   <div id="inherited-methods-java.lang.Object-list"
@@ -1772,7 +1793,7 @@ From class
             
             
             
-            Object</nobr>
+            <a href="http://developer.android.com/reference/java/lang/Object.html">Object</a></nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad">clone</span>()</nobr>
@@ -1791,7 +1812,7 @@ From class
             boolean</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">equals</span>(Object arg0)</nobr>
+        <span class="sympad">equals</span>(<a href="http://developer.android.com/reference/java/lang/Object.html">Object</a> arg0)</nobr>
         
   </td></tr>
 
@@ -1820,7 +1841,7 @@ From class
             final
             
             
-            Class&lt;?&gt;</nobr>
+            <a href="http://developer.android.com/reference/java/lang/Class.html">Class</a>&lt;?&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad">getClass</span>()</nobr>
@@ -1884,7 +1905,7 @@ From class
             
             
             
-            String</nobr>
+            <a href="http://developer.android.com/reference/java/lang/String.html">String</a></nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad">toString</span>()</nobr>
@@ -2270,7 +2291,7 @@ From class
       <h5 class="jd-tagtitle">Throws</h5>
       <table class="jd-tagtable">  
         <tr>
-            <th>IllegalArgumentException</td>
+            <th><a href="http://developer.android.com/reference/java/lang/IllegalArgumentException.html">IllegalArgumentException</a></td>
             <td>if either the image or the position is unspecified in the
              options.
 </td>
@@ -2450,7 +2471,7 @@ From class
           <th>options</td>
           <td>A tile-overlay options object that defines how to render the overlay. Options
             must have a <code><a href="../../../../../../reference/com/google/android/gms/maps/model/TileProvider.html">TileProvider</a></code>
-            specified, otherwise an <code><a href="../../../../../../reference/java/lang/IllegalArgumentException.html">IllegalArgumentException</a></code> will be thrown.</td>
+            specified, otherwise an <code><a href="../../../../../../http://developer.android.com/reference/java/lang/IllegalArgumentException.html">IllegalArgumentException</a></code> will be thrown.</td>
         </tr>
       </table>
   </div>
@@ -2462,7 +2483,7 @@ From class
       <h5 class="jd-tagtitle">Throws</h5>
       <table class="jd-tagtable">  
         <tr>
-            <th>IllegalArgumentException</td>
+            <th><a href="http://developer.android.com/reference/java/lang/IllegalArgumentException.html">IllegalArgumentException</a></td>
             <td>if the <code><a href="../../../../../../reference/com/google/android/gms/maps/model/TileProvider.html">TileProvider</a></code> is unspecified in the options.
 </td>
         </tr>
@@ -2507,7 +2528,7 @@ From class
         <tr>
           <th>durationMs</td>
           <td>The duration of the animation in milliseconds. This must be strictly
-            positive, otherwise an <code><a href="../../../../../../reference/java/lang/IllegalArgumentException.html">IllegalArgumentException</a></code> will be thrown.
+            positive, otherwise an <code><a href="../../../../../../http://developer.android.com/reference/java/lang/IllegalArgumentException.html">IllegalArgumentException</a></code> will be thrown.
 </td>
         </tr>
         <tr>
@@ -2517,7 +2538,8 @@ From class
             notified with <code><a href="../../../../../../reference/com/google/android/gms/maps/GoogleMap.CancelableCallback.html#onFinish()">onFinish()</a></code>. If the animation stops due to
             interruption by a later camera movement or a user gesture,
             <code><a href="../../../../../../reference/com/google/android/gms/maps/GoogleMap.CancelableCallback.html#onCancel()">onCancel()</a></code> will be called. The callback should not
-            attempt to move or animate the camera in its cancellation method.</td>
+            attempt to move or animate the camera in its cancellation method. If a callback
+            isn't required, leave it as <code>null</code>.</td>
         </tr>
       </table>
   </div>
@@ -2802,7 +2824,7 @@ From class
         final 
          
          
-        Location
+        <a href="http://developer.android.com/reference/android/location/Location.html">Location</a>
       </span>
       <span class="sympad">getMyLocation</span>
       <span class="normal">()</span>
@@ -2829,13 +2851,13 @@ From class
  available.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>The currently displayed <code><a href="../../../../../../reference/android/location/Location.html">user location</a></code>.</li></ul>
+      <ul class="nolist"><li>The currently displayed <code><a href="../../../../../../http://developer.android.com/reference/android/location/Location.html">user location</a></code>.</li></ul>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Throws</h5>
       <table class="jd-tagtable">  
         <tr>
-            <th>IllegalStateException</td>
+            <th><a href="http://developer.android.com/reference/java/lang/IllegalStateException.html">IllegalStateException</a></td>
             <td>if the my-location layer is not enabled.</td>
         </tr>
       </table>
@@ -2942,7 +2964,7 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Returns whether 3D buildings are enabled.</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Returns whether 3D buildings layer is enabled.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>True if buildings are enabled, false otherwise.
@@ -3120,7 +3142,18 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Turns the 3D buildings layer on or off. </p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Turns the 3D buildings layer on or off.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>enabled</td>
+          <td><code>true</code> to enable the 3D buildings layer; <code>false</code> to disable 3D
+ buildings.
+</td>
+        </tr>
+      </table>
+  </div>
 
     </div>
 </div>
@@ -3822,7 +3855,7 @@ From class
         void
       </span>
       <span class="sympad">snapshot</span>
-      <span class="normal">(<a href="../../../../../../reference/com/google/android/gms/maps/GoogleMap.SnapshotReadyCallback.html">GoogleMap.SnapshotReadyCallback</a> callback, Bitmap bitmap)</span>
+      <span class="normal">(<a href="../../../../../../reference/com/google/android/gms/maps/GoogleMap.SnapshotReadyCallback.html">GoogleMap.SnapshotReadyCallback</a> callback, <a href="http://developer.android.com/reference/android/graphics/Bitmap.html">Bitmap</a> bitmap)</span>
     </h4>
       <div class="api-level">
         <div></div>
@@ -3835,7 +3868,7 @@ From class
   <div class="jd-tagdata jd-tagdescr"><p>Takes a snapshot of the map.
 
  <p>This method is equivalent to <code><a href="../../../../../../reference/com/google/android/gms/maps/GoogleMap.html#snapshot(com.google.android.gms.maps.GoogleMap.SnapshotReadyCallback)">snapshot(SnapshotReadyCallback)</a></code> but lets you
- provide a preallocated <code><a href="../../../../../../reference/android/graphics/Bitmap.html">Bitmap</a></code>. If the bitmap does not match the current dimensions of
+ provide a preallocated <code><a href="../../../../../../http://developer.android.com/reference/android/graphics/Bitmap.html">Bitmap</a></code>. If the bitmap does not match the current dimensions of
  the map, another bitmap will be allocated that fits the map's dimensions.
 
  <p>Although in most cases the object passed by the callback method is the same as the one

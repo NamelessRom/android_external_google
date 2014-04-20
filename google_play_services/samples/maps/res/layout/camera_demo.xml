@@ -36,7 +36,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checked="true"
-        android:onClick="onToggleAnimate"
         android:textOn="@string/animate"
         android:textOff="@string/animate"/>
     </LinearLayout>
@@ -96,49 +95,46 @@
         android:onClick="onZoomOut"
         android:text="@string/zoom_out"/>
     </LinearLayout>
-  </LinearLayout>
-  <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <Button
-      android:id="@+id/sydney"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:onClick="onGoToSydney"
-      android:layout_weight="0.5"
-      android:text="@string/go_to_sydney"/>
-    <Button
-      android:id="@+id/bondi"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:onClick="onGoToBondi"
-      android:layout_weight="0.5"
-      android:text="@string/go_to_bondi"/>
-  </LinearLayout>
-  <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <CheckBox
-      android:id="@+id/duration_toggle"
+    <LinearLayout
+      android:orientation="vertical"
       android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:onClick="onToggleCustomDuration"
-      android:text="@string/duration"/>
-    <SeekBar
-      android:id="@+id/duration_bar"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_weight="1"
-      android:max="5000"/>
+      android:layout_height="fill_parent"
+      android:layout_gravity="right">
+      <Button
+        android:id="@+id/tilt_more"
+        android:layout_width="33dp"
+        android:layout_height="wrap_content"
+        android:text="@string/tilt_more"
+        android:onClick="onTiltMore"/>
+      <Button
+        android:id="@+id/tilt_less"
+        android:layout_width="33dp"
+        android:layout_height="wrap_content"
+        android:text="@string/tilt_less"
+        android:onClick="onTiltLess"/>
+    </LinearLayout>
+  </LinearLayout>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+      <Button
+        android:id="@+id/sydney"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:onClick="onGoToSydney"
+        android:layout_weight="0.5"
+        android:text="@string/go_to_sydney"/>
+      <Button
+        android:id="@+id/bondi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:onClick="onGoToBondi"
+        android:layout_weight="0.5"
+        android:text="@string/go_to_bondi"/>
   </LinearLayout>
   <fragment
-    xmlns:map="http://schemas.android.com/apk/res-auto"
     android:id="@+id/map"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    class="com.google.android.gms.maps.SupportMapFragment"
-    map:cameraZoom="10"
-    map:cameraTargetLat="-33.87365"
-    map:cameraTargetLng="151.20689"
-    map:uiZoomControls="false"/>
+    class="com.google.android.gms.maps.SupportMapFragment"/>
 </LinearLayout>

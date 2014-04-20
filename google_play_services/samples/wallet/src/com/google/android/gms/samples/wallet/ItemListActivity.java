@@ -20,7 +20,6 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,7 +29,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 /**
- * The launcher activity for XYZ application. If the app is launched on a tablet
+ * The launcher activity for Bikestore application. This activity hosts two fragments,
+ * one fragment shows a promotion that uses Address lookup API while the other fragment has the
+ * list of bikes for sale. If the app is launched on a tablet
  * (x-large screen) in landscape mode the UI will display an item list and
  * details for the currently selected item. If the application is launched on
  * any device in any other orientation, only the item list is shown.
@@ -39,7 +40,8 @@ import android.widget.ListView;
  * activity implements {@link OnItemClickListener} instead of {@link ItemListFragment}.
  *
  */
-public class ItemListActivity extends FragmentActivity implements OnItemClickListener {
+public class ItemListActivity extends BikestoreFragmentActivity
+        implements OnItemClickListener {
 
     private Menu mMenu;
     private boolean mIsDualFrame = false;
@@ -63,7 +65,7 @@ public class ItemListActivity extends FragmentActivity implements OnItemClickLis
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == LoginActivity.REQUEST_USER_LOGIN) {
+        if (requestCode == REQUEST_USER_LOGIN) {
             if (resultCode == RESULT_OK) {
                 invalidateOptionsMenu();
             }
@@ -78,7 +80,7 @@ public class ItemListActivity extends FragmentActivity implements OnItemClickLis
 
         mMenu = menu;
         MenuInflater inflater = getMenuInflater();
-        if (((XyzApplication) getApplication()).isLoggedIn()) {
+        if (((BikestoreApplication) getApplication()).isLoggedIn()) {
             inflater.inflate(R.menu.menu_logout, menu);
         } else {
             inflater.inflate(R.menu.menu_login, menu);
@@ -91,12 +93,14 @@ public class ItemListActivity extends FragmentActivity implements OnItemClickLis
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.login:
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivityForResult(intent, LoginActivity.REQUEST_USER_LOGIN);
+                Intent loginIntent = new Intent(this, LoginActivity.class);
+                loginIntent.putExtra(LoginActivity.EXTRA_ACTION, LoginActivity.Action.LOGIN);
+                startActivityForResult(loginIntent, REQUEST_USER_LOGIN);
                 return true;
             case R.id.logout:
-                ((XyzApplication) getApplication()).logout();
-                invalidateOptionsMenu();
+                Intent logoutIntent = new Intent(this, LoginActivity.class);
+                logoutIntent.putExtra(LoginActivity.EXTRA_ACTION, LoginActivity.Action.LOGOUT);
+                startActivityForResult(logoutIntent, REQUEST_USER_LOGIN);
                 return true;
             default:
                 return false;
@@ -121,7 +125,7 @@ public class ItemListActivity extends FragmentActivity implements OnItemClickLis
             super.invalidateOptionsMenu();
         } else if (mMenu != null) {
             MenuInflater inflater = getMenuInflater();
-            if (((XyzApplication) getApplication()).isLoggedIn()) {
+            if (((BikestoreApplication) getApplication()).isLoggedIn()) {
                 inflater.inflate(R.menu.menu_logout, mMenu);
             } else {
                 inflater.inflate(R.menu.menu_login, mMenu);

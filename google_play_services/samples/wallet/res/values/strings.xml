@@ -17,8 +17,8 @@
 
 <resources>
 
-    <string name="app_name">Google Wallet SDK Sample</string>
-    <string name="store_name">XYZ, Inc.</string>
+    <string name="app_name">Awesome Bike Store App</string>
+    <string name="store_name">Awesome Bike Store</string>
     <string name="title_details">Details</string>
     <string name="title_checkout">Checkout</string>
     <string name="title_confirmation">Order Confirmation</string>
@@ -64,23 +64,27 @@
     <string name="menu_login">Login</string>
     <string name="menu_logout">Logout</string>
     <string name="login_google">Login with Google</string>
-    <string name="login_xyz">XYZ Login</string>
+    <string name="login_bikestore">Bikestore Login</string>
     <string name="login_guest">Guest Login</string>
-    <string name="login_xyz_message">Not implemented. Merchant specific login flow.</string>
+    <string name="login_bikestore_message">Not implemented. Merchant specific login flow.</string>
     <string name="select_account">Select Account</string>
     <string name="permission_denied_message">Permission to fetch Google profile information denied. Cannot login.</string>
     <string name="welcome_user">Welcome, %s.</string>
+    <string name="logged_out">You are now logged out</string>
     <string name="login_email">Email Address</string>
     <string name="login_password">Password</string>
     <string name="enter_new_credit_card">Enter new credit card</string>
     <string name="saved_card_info">Issuer-1234</string>
     <string name="no_google_account">The device does not a Google account associated with it. Please add one and try again.</string>
-    <string name="promo_label">Camera XY000</string>
+    <string name="promo_label">Conference Bike</string>
     <string name="promo"><![CDATA[
-        <font color="#3C72C4"><b>Free shipping</b></font>
-        <font color="#919397">with every Camera XY000</font>
-        <b>Today only!</b>
+        <font color="#3C72C4"><b>Free shipping on</b></font>
+        <font color="#919397">Check if your address qualifies</font>
+        <br />
+        <b>Tap here</b>
     ]]></string>
     <string name="loyalty_info">Loyalty:</string>
+    <string name="promo_eligible">Congratulations! We can ship Conference bike free to %s</string>
+    <string name="no_address">Unfortunately we did not find any address eligible for this promotion</string>
 
 </resources>

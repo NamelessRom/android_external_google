@@ -59,7 +59,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ListPeopleActivity"
+            android:name=".ListVisiblePeopleActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ListConnectedPeopleActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

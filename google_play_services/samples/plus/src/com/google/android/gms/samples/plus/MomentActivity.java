@@ -16,9 +16,15 @@
 
 package com.google.android.gms.samples.plus;
 
+import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.plus.PlusClient;
+import com.google.android.gms.plus.Moments;
+import com.google.android.gms.plus.Plus;
+import com.google.android.gms.plus.Plus.PlusOptions;
 import com.google.android.gms.plus.model.moments.ItemScope;
 import com.google.android.gms.plus.model.moments.Moment;
 
@@ -37,13 +43,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
- * Example of writing moments through the PlusClient.
+ * Example of writing moments through the GoogleApiClient.
  */
 public class MomentActivity extends Activity implements OnItemClickListener,
-        PlusClient.ConnectionCallbacks, PlusClient.OnConnectionFailedListener,
-        DialogInterface.OnCancelListener {
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
+        ResultCallback<Status>, DialogInterface.OnCancelListener {
 
     private static final String TAG = "MomentActivity";
 
@@ -54,7 +61,7 @@ public class MomentActivity extends Activity implements OnItemClickListener,
     private static final int REQUEST_CODE_SIGN_IN = 1;
     private static final int REQUEST_CODE_GET_GOOGLE_PLAY_SERVICES = 2;
 
-    private PlusClient mPlusClient;
+    private GoogleApiClient mGoogleApiClient;
     private ListAdapter mListAdapter;
     private ListView mMomentListView;
     private boolean mResolvingError;
@@ -63,8 +70,12 @@ public class MomentActivity extends Activity implements OnItemClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.multi_moment_activity);
-        mPlusClient = new PlusClient.Builder(this, this, this)
-                .setActions(MomentUtil.ACTIONS)
+        PlusOptions options = PlusOptions.builder().addActivityTypes(MomentUtil.ACTIONS).build();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Plus.API, options)
+                .addScope(Plus.SCOPE_PLUS_LOGIN)
                 .build();
 
         mListAdapter = new ArrayAdapter<String>(
@@ -75,7 +86,7 @@ public class MomentActivity extends Activity implements OnItemClickListener,
                 && savedInstanceState.getBoolean(STATE_RESOLVING_ERROR, false);
 
         int available = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-        if (available != ConnectionResult.SUCCESS) {
+        if (available != CommonStatusCodes.SUCCESS) {
             showDialog(DIALOG_GET_GOOGLE_PLAY_SERVICES);
         }
     }
@@ -87,7 +98,7 @@ public class MomentActivity extends Activity implements OnItemClickListener,
         }
 
         int available = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-        if (available == ConnectionResult.SUCCESS) {
+        if (available == CommonStatusCodes.SUCCESS) {
             return null;
         }
         if (GooglePlayServicesUtil.isUserRecoverableError(available)) {
@@ -104,13 +115,41 @@ public class MomentActivity extends Activity implements OnItemClickListener,
     @Override
     protected void onStart() {
         super.onStart();
-        mPlusClient.connect();
+        mGoogleApiClient.connect();
     }
 
     @Override
     protected void onStop() {
-        mPlusClient.disconnect();
+        mGoogleApiClient.disconnect();
         super.onStop();
+    }
+
+    @Override
+    public void onResult(Status status) {
+        switch (status.getStatusCode()) {
+            case CommonStatusCodes.SUCCESS:
+                Toast.makeText(this, getString(R.string.plus_write_moment_status_success),
+                        Toast.LENGTH_SHORT).show();
+                break;
+
+            case CommonStatusCodes.SUCCESS_CACHE:
+                Toast.makeText(this, getString(R.string.plus_write_moment_status_cached),
+                        Toast.LENGTH_SHORT).show();
+                break;
+
+            case CommonStatusCodes.SIGN_IN_REQUIRED:
+                Toast.makeText(this, getString(R.string.plus_write_moment_status_auth_error),
+                        Toast.LENGTH_SHORT).show();
+                mGoogleApiClient.disconnect();
+                mGoogleApiClient.connect();
+                break;
+
+            default:
+                Toast.makeText(this, getString(R.string.plus_write_moment_status_error),
+                        Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Error when writing moments: " + status);
+                break;
+        }
     }
 
     @Override
@@ -131,8 +170,8 @@ public class MomentActivity extends Activity implements OnItemClickListener,
             // onActivityResult is called after onStart (but onStart is not
             // guaranteed to be called while signing in), so we should make
             // sure we're not already connecting before we call connect again.
-            if (!mPlusClient.isConnecting() && !mPlusClient.isConnected()) {
-                mPlusClient.connect();
+            if (!mGoogleApiClient.isConnecting() && !mGoogleApiClient.isConnected()) {
+                mGoogleApiClient.connect();
             }
         } else {
             Log.e(TAG, "Unable to sign the user in.");
@@ -148,7 +187,7 @@ public class MomentActivity extends Activity implements OnItemClickListener,
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        if (mPlusClient.isConnected()) {
+        if (mGoogleApiClient.isConnected()) {
             TextView textView = (TextView) view;
             String momentType = (String) textView.getText();
             String targetUrl = MomentUtil.MOMENT_TYPES.get(momentType);
@@ -161,10 +200,10 @@ public class MomentActivity extends Activity implements OnItemClickListener,
 
             ItemScope result = MomentUtil.getResultFor(momentType);
             if (result != null) {
-              momentBuilder.setResult(result);
+                momentBuilder.setResult(result);
             }
 
-            mPlusClient.writeMoment(momentBuilder.build());
+            Plus.MomentsApi.write(mGoogleApiClient, momentBuilder.build()).setResultCallback(this);
         }
     }
 
@@ -174,7 +213,7 @@ public class MomentActivity extends Activity implements OnItemClickListener,
     }
 
     @Override
-    public void onDisconnected() {
+    public void onConnectionSuspended(int cause) {
         mMomentListView.setAdapter(null);
     }
 
@@ -189,7 +228,7 @@ public class MomentActivity extends Activity implements OnItemClickListener,
             mResolvingError = true;
         } catch (IntentSender.SendIntentException e) {
             // Reconnect to get another intent to start.
-            mPlusClient.connect();
+            mGoogleApiClient.connect();
         }
     }
 

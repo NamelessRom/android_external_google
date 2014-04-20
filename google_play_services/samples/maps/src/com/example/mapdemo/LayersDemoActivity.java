@@ -17,6 +17,7 @@
 package com.example.mapdemo;
 
 import static com.google.android.gms.maps.GoogleMap.MAP_TYPE_HYBRID;
+import static com.google.android.gms.maps.GoogleMap.MAP_TYPE_NONE;
 import static com.google.android.gms.maps.GoogleMap.MAP_TYPE_NORMAL;
 import static com.google.android.gms.maps.GoogleMap.MAP_TYPE_SATELLITE;
 import static com.google.android.gms.maps.GoogleMap.MAP_TYPE_TERRAIN;
@@ -45,6 +46,7 @@ public class LayersDemoActivity extends FragmentActivity implements OnItemSelect
     private CheckBox mTrafficCheckbox;
     private CheckBox mMyLocationCheckbox;
     private CheckBox mBuildingsCheckbox;
+    private CheckBox mIndoorCheckbox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,7 @@ public class LayersDemoActivity extends FragmentActivity implements OnItemSelect
         mTrafficCheckbox = (CheckBox) findViewById(R.id.traffic);
         mMyLocationCheckbox = (CheckBox) findViewById(R.id.my_location);
         mBuildingsCheckbox = (CheckBox) findViewById(R.id.buildings);
-
+        mIndoorCheckbox = (CheckBox) findViewById(R.id.indoor);
         setUpMapIfNeeded();
     }
 
@@ -73,6 +75,7 @@ public class LayersDemoActivity extends FragmentActivity implements OnItemSelect
             updateTraffic();
             updateMyLocation();
             updateBuildings();
+            updateIndoor();
         }
     }
 
@@ -132,6 +135,21 @@ public class LayersDemoActivity extends FragmentActivity implements OnItemSelect
         }
         mMap.setBuildingsEnabled(mBuildingsCheckbox.isChecked());
     }
+
+    /**
+     * Called when the Indoor checkbox is clicked.
+     */
+    public void onIndoorToggled(View view) {
+        updateIndoor();
+    }
+
+    private void updateIndoor() {
+        if (!checkReady()) {
+            return;
+        }
+        mMap.setIndoorEnabled(mIndoorCheckbox.isChecked());
+    }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -150,6 +168,8 @@ public class LayersDemoActivity extends FragmentActivity implements OnItemSelect
             mMap.setMapType(MAP_TYPE_SATELLITE);
         } else if (layerName.equals(getString(R.string.terrain))) {
             mMap.setMapType(MAP_TYPE_TERRAIN);
+        } else if (layerName.equals(getString(R.string.none_map))) {
+            mMap.setMapType(MAP_TYPE_NONE);
         } else {
             Log.i("LDA", "Error setting layer with name " + layerName);
         }

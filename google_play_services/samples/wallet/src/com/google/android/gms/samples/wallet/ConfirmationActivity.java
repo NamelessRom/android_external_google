@@ -24,7 +24,7 @@ import android.os.Bundle;
  *
  * @see ConfirmationFragment
  */
-public class ConfirmationActivity extends XyzWalletFragmentActivity {
+public class ConfirmationActivity extends BikestoreFragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

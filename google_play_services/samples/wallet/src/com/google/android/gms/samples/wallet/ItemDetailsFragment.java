@@ -40,11 +40,7 @@ public class ItemDetailsFragment extends Fragment implements OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         mRoot = inflater.inflate(R.layout.fragment_item_details, container, false);
-
-        Intent intent = getActivity().getIntent();
-        if (intent != null) {
-            mItemId = intent.getIntExtra(Constants.EXTRA_ITEM_ID, 0);
-        }
+        mItemId = getActivity().getIntent().getIntExtra(Constants.EXTRA_ITEM_ID, 2);
         setItemId(mItemId);
         return mRoot;
     }

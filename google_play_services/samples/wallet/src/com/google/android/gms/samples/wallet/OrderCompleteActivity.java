@@ -36,12 +36,7 @@ public class OrderCompleteActivity extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_complete);
-
-        Intent intent = getIntent();
-        if (intent != null) {
-            mFullWallet = intent.getParcelableExtra(Constants.EXTRA_FULL_WALLET);
-        }
-
+        mFullWallet = getIntent().getParcelableExtra(Constants.EXTRA_FULL_WALLET);
         Button continueButton = (Button) findViewById(R.id.button_continue_shopping);
         continueButton.setOnClickListener(this);
     }

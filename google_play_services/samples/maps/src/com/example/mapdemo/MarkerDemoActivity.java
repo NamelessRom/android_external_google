@@ -391,7 +391,7 @@ public class MarkerDemoActivity extends FragmentActivity
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        Toast.makeText(getBaseContext(), "Click Info Window", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Click Info Window", Toast.LENGTH_SHORT).show();
     }
 
     @Override

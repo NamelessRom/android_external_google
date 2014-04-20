@@ -106,6 +106,13 @@ type="text/css">
 </script>
 <script src="../../../../../assets/js/docs.js" type="text/javascript"></script>
 
+<!-- RESOURCES LIBRARY -->
+<script src="http://androiddevdocs-staging.appspot.com/ytblogger_lists_unified.js" type="text/javascript"></script>
+<script src="../../../../../jd_lists_unified.js" type="text/javascript"></script>
+<script src="../../../../../assets/js/jd_tag_helpers.js" type="text/javascript"></script>
+<link href="../../../../../assets/css/resourcecards.css"  rel="stylesheet" type="text/css" />
+<script src="../../../../../assets/js/resourcecards.js" type="text/javascript"></script>
+
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-5831155-1']);
@@ -423,9 +430,13 @@ onkeyup="return search_changed(event, false, '../../../../../')" />
     <li class="api apilevel-">
   <a href="../../../../../reference/com/google/android/gms/ads/search/package-summary.html">com.google.android.gms.ads.search</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../reference/com/google/android/gms/analytics/package-summary.html">com.google.android.gms.analytics</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../reference/com/google/android/gms/appstate/package-summary.html">com.google.android.gms.appstate</a></li>
     <li class="api apilevel-">
   <a href="../../../../../reference/com/google/android/gms/auth/package-summary.html">com.google.android.gms.auth</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../reference/com/google/android/gms/cast/package-summary.html">com.google.android.gms.cast</a></li>
     <li class="api apilevel-">
   <a href="../../../../../reference/com/google/android/gms/common/package-summary.html">com.google.android.gms.common</a></li>
     <li class="api apilevel-">
@@ -438,6 +449,8 @@ onkeyup="return search_changed(event, false, '../../../../../')" />
   <a href="../../../../../reference/com/google/android/gms/common/images/package-summary.html">com.google.android.gms.common.images</a></li>
     <li class="api apilevel-">
   <a href="../../../../../reference/com/google/android/gms/drive/package-summary.html">com.google.android.gms.drive</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../reference/com/google/android/gms/drive/events/package-summary.html">com.google.android.gms.drive.events</a></li>
     <li class="api apilevel-">
   <a href="../../../../../reference/com/google/android/gms/drive/metadata/package-summary.html">com.google.android.gms.drive.metadata</a></li>
     <li class="api apilevel-">
@@ -457,7 +470,13 @@ onkeyup="return search_changed(event, false, '../../../../../')" />
     <li class="api apilevel-">
   <a href="../../../../../reference/com/google/android/gms/games/multiplayer/turnbased/package-summary.html">com.google.android.gms.games.multiplayer.turnbased</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../reference/com/google/android/gms/games/request/package-summary.html">com.google.android.gms.games.request</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../reference/com/google/android/gms/gcm/package-summary.html">com.google.android.gms.gcm</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../reference/com/google/android/gms/identity/intents/package-summary.html">com.google.android.gms.identity.intents</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../reference/com/google/android/gms/identity/intents/model/package-summary.html">com.google.android.gms.identity.intents.model</a></li>
     <li class="api apilevel-">
   <a href="../../../../../reference/com/google/android/gms/location/package-summary.html">com.google.android.gms.location</a></li>
     <li class="api apilevel-">
@@ -472,6 +491,8 @@ onkeyup="return search_changed(event, false, '../../../../../')" />
   <a href="../../../../../reference/com/google/android/gms/plus/model/moments/package-summary.html">com.google.android.gms.plus.model.moments</a></li>
     <li class="api apilevel-">
   <a href="../../../../../reference/com/google/android/gms/plus/model/people/package-summary.html">com.google.android.gms.plus.model.people</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../reference/com/google/android/gms/tagmanager/package-summary.html">com.google.android.gms.tagmanager</a></li>
     <li class="api apilevel-">
   <a href="../../../../../reference/com/google/android/gms/wallet/package-summary.html">com.google.android.gms.wallet</a></li>
               </ul><br/>
@@ -610,7 +631,7 @@ Summary:
 
 
   
-    extends Object<br/>
+    extends <a href="http://developer.android.com/reference/java/lang/Object.html">Object</a><br/>
   
   
   
@@ -630,7 +651,7 @@ Summary:
 
     <tr>
          	
-        <td colspan="2" class="jd-inheritance-class-cell">java.lang.Object</td>
+        <td colspan="2" class="jd-inheritance-class-cell"><a href="http://developer.android.com/reference/java/lang/Object.html">java.lang.Object</a></td>
     </tr>
     
 
@@ -740,12 +761,23 @@ Summary:
           static
           
           int</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#allowShortcuts">allowShortcuts</a></td>
+          <td class="jd-descrcol" width="100%">Whether or not global search is enabled for this corpus.</td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          public
+          static
+          
+          int</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#cameraBearing">cameraBearing</a></td>
           <td class="jd-descrcol" width="100%"><p>Must be a floating point value, such as "<code>1.2</code>".</td>
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
+      <tr class=" api apilevel-" >
           <td class="jd-typecol"><nobr>
           public
           static
@@ -756,7 +788,7 @@ Summary:
       </tr>
       
     
-      <tr class=" api apilevel-" >
+      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol"><nobr>
           public
           static
@@ -767,7 +799,7 @@ Summary:
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
+      <tr class=" api apilevel-" >
           <td class="jd-typecol"><nobr>
           public
           static
@@ -778,7 +810,7 @@ Summary:
       </tr>
       
     
-      <tr class=" api apilevel-" >
+      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol"><nobr>
           public
           static
@@ -786,17 +818,6 @@ Summary:
           int</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#cameraZoom">cameraZoom</a></td>
           <td class="jd-descrcol" width="100%"><p>Must be a floating point value, such as "<code>1.2</code>".</td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          public
-          static
-          
-          int</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#content">content</a></td>
-          <td class="jd-descrcol" width="100%">The content of this global search section.</td>
       </tr>
       
     
@@ -809,6 +830,28 @@ Summary:
           <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#contentProviderUri">contentProviderUri</a></td>
           <td class="jd-descrcol" width="100%">The URI of the content provider that the index should crawl to get the data for this
     corpus.</td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          public
+          static
+          
+          int</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#corpusId">corpusId</a></td>
+          <td class="jd-descrcol" width="100%">The ID of the corpus.</td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          public
+          static
+          
+          int</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#corpusVersion">corpusVersion</a></td>
+          <td class="jd-descrcol" width="100%">The version of the corpus.</td>
       </tr>
       
     
@@ -851,30 +894,8 @@ Summary:
           static
           
           int</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#enabled">enabled</a></td>
-          <td class="jd-descrcol" width="100%">Whether or not global search is enabled for this app.</td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          public
-          static
-          
-          int</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#format">format</a></td>
-          <td class="jd-descrcol" width="100%">The format of the section.</td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          public
-          static
-          
-          int</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#id">id</a></td>
-          <td class="jd-descrcol" width="100%">The ID of the corpus.</td>
+          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#featureType">featureType</a></td>
+          <td class="jd-descrcol" width="100%">The type of this feature.</td>
       </tr>
       
     
@@ -895,30 +916,8 @@ Summary:
           static
           
           int</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#label">label</a></td>
-          <td class="jd-descrcol" width="100%">A localized string to identify this apps data within the global search app.</td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          public
-          static
-          
-          int</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#mapType">mapType</a></td>
           <td class="jd-descrcol" width="100%"><p>Must be one of the following constant values.</td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          public
-          static
-          
-          int</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#name">name</a></td>
-          <td class="jd-descrcol" width="100%">The name of this parameter.</td>
       </tr>
       
     
@@ -939,8 +938,96 @@ Summary:
           static
           
           int</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#paramName">paramName</a></td>
+          <td class="jd-descrcol" width="100%">The name of this parameter.</td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          public
+          static
+          
+          int</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#paramValue">paramValue</a></td>
+          <td class="jd-descrcol" width="100%">The value of this parameter.</td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          public
+          static
+          
+          int</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#searchEnabled">searchEnabled</a></td>
+          <td class="jd-descrcol" width="100%">Whether or not global search is enabled for this app.</td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          public
+          static
+          
+          int</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#searchLabel">searchLabel</a></td>
+          <td class="jd-descrcol" width="100%">A localized string to identify this apps data within the global search app.</td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          public
+          static
+          
+          int</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#sectionContent">sectionContent</a></td>
+          <td class="jd-descrcol" width="100%">The content of this global search section.</td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          public
+          static
+          
+          int</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#sectionFormat">sectionFormat</a></td>
+          <td class="jd-descrcol" width="100%">The format of the section.</td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          public
+          static
+          
+          int</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#sectionId">sectionId</a></td>
-          <td class="jd-descrcol" width="100%">The global search section ID for this mapping.</td>
+          <td class="jd-descrcol" width="100%">The ID of the section.</td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          public
+          static
+          
+          int</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#sectionType">sectionType</a></td>
+          <td class="jd-descrcol" width="100%">The type of global search section for this mapping.</td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          public
+          static
+          
+          int</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#sectionWeight">sectionWeight</a></td>
+          <td class="jd-descrcol" width="100%">The weight of the section.</td>
       </tr>
       
     
@@ -983,23 +1070,12 @@ Summary:
           static
           
           int</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#type">type</a></td>
-          <td class="jd-descrcol" width="100%">The type of this section.</td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          public
-          static
-          
-          int</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#uiCompass">uiCompass</a></td>
           <td class="jd-descrcol" width="100%"><p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".</td>
       </tr>
       
     
-      <tr class=" api apilevel-" >
+      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol"><nobr>
           public
           static
@@ -1010,7 +1086,7 @@ Summary:
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
+      <tr class=" api apilevel-" >
           <td class="jd-typecol"><nobr>
           public
           static
@@ -1021,7 +1097,7 @@ Summary:
       </tr>
       
     
-      <tr class=" api apilevel-" >
+      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol"><nobr>
           public
           static
@@ -1032,7 +1108,7 @@ Summary:
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
+      <tr class=" api apilevel-" >
           <td class="jd-typecol"><nobr>
           public
           static
@@ -1043,7 +1119,7 @@ Summary:
       </tr>
       
     
-      <tr class=" api apilevel-" >
+      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol"><nobr>
           public
           static
@@ -1054,7 +1130,7 @@ Summary:
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
+      <tr class=" api apilevel-" >
           <td class="jd-typecol"><nobr>
           public
           static
@@ -1062,39 +1138,6 @@ Summary:
           int</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#useViewLifecycle">useViewLifecycle</a></td>
           <td class="jd-descrcol" width="100%"><p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".</td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          public
-          static
-          
-          int</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#value">value</a></td>
-          <td class="jd-descrcol" width="100%">The value of this parameter.</td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          public
-          static
-          
-          int</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#version">version</a></td>
-          <td class="jd-descrcol" width="100%">The version of the corpus.</td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          public
-          static
-          
-          int</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../reference/com/google/android/gms/R.attr.html#weight">weight</a></td>
-          <td class="jd-descrcol" width="100%">The weight of the section.</td>
       </tr>
       
     
@@ -1166,7 +1209,7 @@ Summary:
           class="jd-expando-trigger-img" /></a>
 From class
 
-  java.lang.Object
+  <a href="http://developer.android.com/reference/java/lang/Object.html">java.lang.Object</a>
 
 <div id="inherited-methods-java.lang.Object">
   <div id="inherited-methods-java.lang.Object-list"
@@ -1185,7 +1228,7 @@ From class
             
             
             
-            Object</nobr>
+            <a href="http://developer.android.com/reference/java/lang/Object.html">Object</a></nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad">clone</span>()</nobr>
@@ -1204,7 +1247,7 @@ From class
             boolean</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">equals</span>(Object arg0)</nobr>
+        <span class="sympad">equals</span>(<a href="http://developer.android.com/reference/java/lang/Object.html">Object</a> arg0)</nobr>
         
   </td></tr>
 
@@ -1233,7 +1276,7 @@ From class
             final
             
             
-            Class&lt;?&gt;</nobr>
+            <a href="http://developer.android.com/reference/java/lang/Class.html">Class</a>&lt;?&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad">getClass</span>()</nobr>
@@ -1297,7 +1340,7 @@ From class
             
             
             
-            String</nobr>
+            <a href="http://developer.android.com/reference/java/lang/String.html">String</a></nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad">toString</span>()</nobr>
@@ -1502,6 +1545,48 @@ containing a value of this type.
 
 
 
+<A NAME="allowShortcuts"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+         
+        int
+      </span>
+        allowShortcuts
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Whether or not global search is enabled for this corpus. Optional; defaults to
+      <code>true</code>. If set to <code>false</code>, it will be treated as if the <code>GlobalSearchCorpus</code>
+      element did not exist. 
+ Allow shortcuts to global search results from this corpus to be created. If set to
+      <code>true</code>, the global search app may allow the user to create shortcuts to results, for
+      example on the users home screen. The short cuts may be long lived, and may persist after the
+      linked document has been deleted. The activity that handles the global search result intent
+      should be able to deal with this gracefully. Defaults to <code>false</code>. 
+         <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
 <A NAME="cameraBearing"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -1672,42 +1757,6 @@ containing a value of this type.
 
 
 
-<A NAME="content"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-         
-        int
-      </span>
-        content
-    </h4>
-      <div class="api-level">
-        
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>The content of this global search section. This is a global search section template string.
-      It should contain a reference to a string which can change between configurations. 
-         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-</p></div>
-
-    
-    </div>
-</div>
-
-
-
 <A NAME="contentProviderUri"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -1730,6 +1779,77 @@ containing a value of this type.
       
   <div class="jd-tagdata jd-tagdescr"><p>The URI of the content provider that the index should crawl to get the data for this
     corpus. Required. This string must not change between configurations. 
+         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="corpusId"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+         
+        int
+      </span>
+        corpusId
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>The ID of the corpus. Required. This string must not change between configurations. 
+         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="corpusVersion"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+         
+        int
+      </span>
+        corpusVersion
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>The version of the corpus. Optional; defaults to <code>"0"</code>. This string must not change
+      between configurations. 
          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -1852,7 +1972,7 @@ containing a value of this type.
 
 
 
-<A NAME="enabled"></A>
+<A NAME="featureType"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1862,7 +1982,7 @@ containing a value of this type.
          
         int
       </span>
-        enabled
+        featureType
     </h4>
       <div class="api-level">
         
@@ -1872,89 +1992,18 @@ containing a value of this type.
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Whether or not global search is enabled for this app. Optional; defaults to <code>true</code>.
-      If set to <code>false</code>, it will be treated as if the <code>GlobalSearch</code> element did not
-      exist. 
-         <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-</p></div>
-
-    
-    </div>
-</div>
-
-
-
-<A NAME="format"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-         
-        int
-      </span>
-        format
-    </h4>
-      <div class="api-level">
-        
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>The format of the section. Optional; default to <code>plain</code>. 
+  <div class="jd-tagdata jd-tagdescr"><p>The type of this feature. Required. 
          <p>Must be one of the following constant values.</p>
 <table>
 <colgroup align="left" />
 <colgroup align="left" />
 <colgroup align="left" />
 <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
-<tr><td><code>plain</code></td><td>0</td><td></td></tr>
-<tr><td><code>html</code></td><td>1</td><td></td></tr>
-<tr><td><code>rfc822</code></td><td>2</td><td></td></tr>
+<tr><td><code>match_global_nicknames</code></td><td>1</td><td>  Enable global nickname matching on this section </td></tr>
+<tr><td><code>demote_common_words</code></td><td>2</td><td>  Demote common words by a factor in this section </td></tr>
+<tr><td><code>demote_rfc822_hostnames</code></td><td>3</td><td>  Demote RFC822 hostnames by a factor in this section. Only applicable to RFC822
+            sections </td></tr>
 </table>
-</p></div>
-
-    
-    </div>
-</div>
-
-
-
-<A NAME="id"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-         
-        int
-      </span>
-        id
-    </h4>
-      <div class="api-level">
-        
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>The ID of the corpus. Required. This string must not change between configurations. 
-         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
 </p></div>
 
     
@@ -1986,41 +2035,6 @@ containing a value of this type.
   <div class="jd-tagdata jd-tagdescr"><p>Indicates if this section should support prefix matching. Optional; defaults to
       <code>false</code>. 
          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-</p></div>
-
-    
-    </div>
-</div>
-
-
-
-<A NAME="label"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-         
-        int
-      </span>
-        label
-    </h4>
-      <div class="api-level">
-        
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>A localized string to identify this apps data within the global search app. Required. 
-         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
 theme attribute (in the form
@@ -2074,41 +2088,6 @@ containing a value of this type.
 
 
 
-<A NAME="name"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-         
-        int
-      </span>
-        name
-    </h4>
-      <div class="api-level">
-        
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>The name of this parameter. Required. 
-         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-</p></div>
-
-    
-    </div>
-</div>
-
-
-
 <A NAME="noIndex"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -2144,6 +2123,223 @@ containing a value of this type.
 
 
 
+<A NAME="paramName"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+         
+        int
+      </span>
+        paramName
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>The name of this parameter. Required. 
+         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="paramValue"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+         
+        int
+      </span>
+        paramValue
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>The value of this parameter. Optional. 
+         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="searchEnabled"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+         
+        int
+      </span>
+        searchEnabled
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Whether or not global search is enabled for this app. Optional; defaults to <code>true</code>.
+      If set to <code>false</code>, it will be treated as if the <code>GlobalSearch</code> element did not
+      exist. 
+         <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="searchLabel"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+         
+        int
+      </span>
+        searchLabel
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>A localized string to identify this apps data within the global search app. Required. 
+         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="sectionContent"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+         
+        int
+      </span>
+        sectionContent
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>The content of this global search section. This is a global search section template string.
+      It should contain a reference to a string which can change between configurations. 
+         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="sectionFormat"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+         
+        int
+      </span>
+        sectionFormat
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>The format of the section. Optional; default to <code>plain</code>. 
+         <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>plain</code></td><td>0</td><td></td></tr>
+<tr><td><code>html</code></td><td>1</td><td></td></tr>
+<tr><td><code>rfc822</code></td><td>2</td><td></td></tr>
+</table>
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
 <A NAME="sectionId"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -2164,7 +2360,42 @@ containing a value of this type.
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>The global search section ID for this mapping. 
+  <div class="jd-tagdata jd-tagdescr"><p>The ID of the section. Required. This string must not change between configurations. 
+         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="sectionType"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+         
+        int
+      </span>
+        sectionType
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>The type of global search section for this mapping. 
          <p>Must be one of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -2181,6 +2412,41 @@ containing a value of this type.
 <tr><td><code>large_icon_uri</code></td><td>7</td><td></td></tr>
 <tr><td><code>intent_activity</code></td><td>8</td><td></td></tr>
 </table>
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="sectionWeight"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+         
+        int
+      </span>
+        sectionWeight
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>The weight of the section. Optional; defaults to 1. 
+         <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
 </p></div>
 
     
@@ -2289,46 +2555,6 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-</p></div>
-
-    
-    </div>
-</div>
-
-
-
-<A NAME="type"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-         
-        int
-      </span>
-        type
-    </h4>
-      <div class="api-level">
-        
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>The type of this section. Required. 
-         <p>Must be one of the following constant values.</p>
-<table>
-<colgroup align="left" />
-<colgroup align="left" />
-<colgroup align="left" />
-<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
-<tr><td><code>match_global_nicknames</code></td><td>1</td><td>  Enable global nickname matching on this section </td></tr>
-<tr><td><code>demote_common_words</code></td><td>2</td><td>  Demote common words by a factor in this section </td></tr>
-<tr><td><code>demote_rfc822_hostnames</code></td><td>3</td><td>  Demote RFC822 hostnames by a factor in this section. Only applicable to RFC822
-            sections </td></tr>
-</table>
 </p></div>
 
     
@@ -2562,112 +2788,6 @@ containing a value of this type.
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p><p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-</p></div>
-
-    
-    </div>
-</div>
-
-
-
-<A NAME="value"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-         
-        int
-      </span>
-        value
-    </h4>
-      <div class="api-level">
-        
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>The value of this parameter. Optional. 
-         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-</p></div>
-
-    
-    </div>
-</div>
-
-
-
-<A NAME="version"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-         
-        int
-      </span>
-        version
-    </h4>
-      <div class="api-level">
-        
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>The version of the corpus. Optional; defaults to <code>"0"</code>. This string must not change
-      between configurations. 
-         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-</p></div>
-
-    
-    </div>
-</div>
-
-
-
-<A NAME="weight"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-         
-        int
-      </span>
-        weight
-    </h4>
-      <div class="api-level">
-        
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>The weight of the section. Optional; defaults to 1. 
-         <p>Must be an integer value, such as "<code>100</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
 theme attribute (in the form

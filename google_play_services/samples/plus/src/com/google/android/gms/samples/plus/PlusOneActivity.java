@@ -16,9 +16,6 @@
 
 package com.google.android.gms.samples.plus;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
-import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
 import com.google.android.gms.plus.PlusOneButton;
 
 import android.app.Activity;
@@ -27,8 +24,7 @@ import android.os.Bundle;
 /**
  * Example usage of the +1 button.
  */
-public class PlusOneActivity extends Activity
-        implements ConnectionCallbacks, OnConnectionFailedListener {
+public class PlusOneActivity extends Activity {
     private static final String URL = "https://developers.google.com/+";
 
     // The request code must be 0 or higher.
@@ -70,20 +66,5 @@ public class PlusOneActivity extends Activity
         mPlusOneTallButton.initialize(URL, PLUS_ONE_REQUEST_CODE);
         mPlusOneStandardButton.initialize(URL, PLUS_ONE_REQUEST_CODE);
         mPlusOneStandardButtonWithAnnotation.initialize(URL, PLUS_ONE_REQUEST_CODE);
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult status) {
-        // Nothing to do.
-    }
-
-    @Override
-    public void onConnected(Bundle connectionHint) {
-        // Nothing to do.
-    }
-
-    @Override
-    public void onDisconnected() {
-        // Nothing to do.
     }
 }

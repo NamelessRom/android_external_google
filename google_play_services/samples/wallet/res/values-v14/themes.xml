@@ -16,7 +16,7 @@
 -->
 
 <resources>
-    <style name="XyzTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="BikestoreTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <item name="android:windowBackground">@android:color/white</item>
         <item name="android:colorBackground">@android:color/white</item>
     </style>

@@ -45,11 +45,13 @@
   <string name="ground_overlay_demo_label">Ground Overlays</string>
   <string name="ground_overlay_demo_description">Demonstrates how to add a GroundOverlay to a map.</string>
   <string name="hybrid">Hybrid</string>
+  <string name="indoor">Indoor</string>
   <string-array name="layers_array">
     <item>@string/normal</item>
     <item>@string/hybrid</item>
     <item>@string/satellite</item>
     <item>@string/terrain</item>
+    <item>@string/none_map</item>
   </string-array>
   <string name="layers_demo_label">Layers</string>
   <string name="layers_demo_description">Demonstrates the different map layers.</string>
@@ -71,6 +73,7 @@
   <string name="mylocation_button">My Location Button</string>
   <string name="mylocation_layer">My Location Layer</string>
   <string name="no_demos">No demos</string>
+  <string name="none_map">None</string>
   <string name="normal">Normal</string>
   <string name="options_demo_label">Options</string>
   <string name="options_demo_description">Demonstrates how to use Options to initialize a map.</string>
@@ -108,9 +111,13 @@
   <string name="switch_image">Switch Image</string>
   <string name="tap_instructions">Tap or long press on the map</string>
   <string name="terrain">Terrain</string>
+  <string name="tile_coordinate_demo_label">Tile Coordinate Overlay</string>
+  <string name="tile_coordinate_demo_description">Demonstrates how to add a tile overlay with tile coordinates to a map.</string>
   <string name="tile_overlay_demo_label">Tile Overlays</string>
   <string name="tile_overlay_demo_description">Demonstrates how to add a tile overlay to a map.</string>
   <string name="tilt">Tilt Gestures</string>
+  <string name="tilt_less">\u2193</string>
+  <string name="tilt_more">\u2191</string>
   <string name="traffic">Traffic</string>
   <string name="transparency">Transparency</string>
   <string name="ui_settings_demo_label">UI Settings</string>

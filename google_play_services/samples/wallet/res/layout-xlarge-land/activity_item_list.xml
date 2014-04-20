@@ -23,6 +23,12 @@
     android:layout_height="match_parent" >
 
     <fragment
+        android:id="@+id/frag"
+        android:name="com.google.android.gms.samples.wallet.PromoAddressLookupFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <fragment
         android:id="@+id/item_list"
         android:name="com.google.android.gms.samples.wallet.ItemListFragment"
         android:layout_weight="1"

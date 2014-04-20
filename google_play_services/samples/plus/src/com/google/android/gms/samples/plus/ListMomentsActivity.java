@@ -18,7 +18,13 @@ package com.google.android.gms.samples.plus;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.plus.PlusClient;
+import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.plus.Moments;
+import com.google.android.gms.plus.Moments.LoadMomentsResult;
+import com.google.android.gms.plus.Plus;
+import com.google.android.gms.plus.Plus.PlusOptions;
 import com.google.android.gms.plus.model.moments.Moment;
 import com.google.android.gms.plus.model.moments.MomentBuffer;
 
@@ -47,8 +53,8 @@ import java.util.ArrayList;
 /**
  * Example of listing the current user's moments.
  */
-public class ListMomentsActivity extends Activity implements PlusClient.ConnectionCallbacks,
-        PlusClient.OnConnectionFailedListener, PlusClient.OnMomentsLoadedListener,
+public class ListMomentsActivity extends Activity implements GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener, ResultCallback<LoadMomentsResult>,
         OnItemClickListener, DialogInterface.OnCancelListener {
 
     private static final String TAG = "MomentActivity";
@@ -65,14 +71,18 @@ public class ListMomentsActivity extends Activity implements PlusClient.Connecti
     private ArrayList<Moment> mListItems;
     private boolean mResolvingError;
 
-    private PlusClient mPlusClient;
+    private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_moments_activity);
-        mPlusClient = new PlusClient.Builder(this, this, this)
-                .setActions(MomentUtil.ACTIONS)
+        PlusOptions options = PlusOptions.builder().addActivityTypes(MomentUtil.ACTIONS).build();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Plus.API, options)
+                .addScope(Plus.SCOPE_PLUS_LOGIN)
                 .build();
 
         mListItems = new ArrayList<Moment>();
@@ -84,7 +94,7 @@ public class ListMomentsActivity extends Activity implements PlusClient.Connecti
                 && savedInstanceState.getBoolean(STATE_RESOLVING_ERROR, false);
 
         int available = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-        if (available != ConnectionResult.SUCCESS) {
+        if (available != CommonStatusCodes.SUCCESS) {
             showDialog(DIALOG_GET_GOOGLE_PLAY_SERVICES);
         }
     }
@@ -96,7 +106,7 @@ public class ListMomentsActivity extends Activity implements PlusClient.Connecti
         }
 
         int available = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-        if (available == ConnectionResult.SUCCESS) {
+        if (available == CommonStatusCodes.SUCCESS) {
             return null;
         }
         if (GooglePlayServicesUtil.isUserRecoverableError(available)) {
@@ -113,7 +123,7 @@ public class ListMomentsActivity extends Activity implements PlusClient.Connecti
     @Override
     protected void onStart() {
         super.onStart();
-        mPlusClient.connect();
+        mGoogleApiClient.connect();
     }
 
     @Override
@@ -124,15 +134,15 @@ public class ListMomentsActivity extends Activity implements PlusClient.Connecti
 
     @Override
     protected void onStop() {
-        mPlusClient.disconnect();
+        mGoogleApiClient.disconnect();
         super.onStop();
     }
 
     @Override
-    public void onMomentsLoaded(ConnectionResult status, MomentBuffer momentBuffer,
-            String nextPageToken, String updated) {
-        switch (status.getErrorCode()) {
-            case ConnectionResult.SUCCESS:
+    public void onResult(LoadMomentsResult momentData) {
+        switch (momentData.getStatus().getStatusCode()) {
+            case CommonStatusCodes.SUCCESS:
+                MomentBuffer momentBuffer = momentData.getMomentBuffer();
                 mListItems.clear();
                 try {
                     int count = momentBuffer.getCount();
@@ -146,13 +156,13 @@ public class ListMomentsActivity extends Activity implements PlusClient.Connecti
                 mMomentListAdapter.notifyDataSetChanged();
                 break;
 
-            case ConnectionResult.SIGN_IN_REQUIRED:
-                mPlusClient.disconnect();
-                mPlusClient.connect();
+            case CommonStatusCodes.SIGN_IN_REQUIRED:
+                mGoogleApiClient.disconnect();
+                mGoogleApiClient.connect();
                 break;
 
             default:
-                Log.e(TAG, "Error when listing people: " + status);
+                Log.e(TAG, "Error when listing moments: " + momentData.getStatus());
                 break;
         }
     }
@@ -164,9 +174,14 @@ public class ListMomentsActivity extends Activity implements PlusClient.Connecti
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Moment moment = mMomentListAdapter.getItem(position);
         if (moment != null) {
-            mPlusClient.removeMoment(moment.getId());
-            Toast.makeText(this, getString(R.string.plus_remove_moment_status),
-                    Toast.LENGTH_SHORT).show();
+            if (mGoogleApiClient.isConnected()) {
+                Plus.MomentsApi.remove(mGoogleApiClient, moment.getId());
+                Toast.makeText(this, getString(R.string.plus_remove_moment_status),
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, getString(R.string.greeting_status_sign_in_required),
+                        Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -188,8 +203,8 @@ public class ListMomentsActivity extends Activity implements PlusClient.Connecti
             // onActivityResult is called after onStart (but onStart is not
             // guaranteed to be called while signing in), so we should make
             // sure we're not already connecting before we call connect again.
-            if (!mPlusClient.isConnecting() && !mPlusClient.isConnected()) {
-                mPlusClient.connect();
+            if (!mGoogleApiClient.isConnecting() && !mGoogleApiClient.isConnected()) {
+                mGoogleApiClient.connect();
             }
         } else {
             Log.e(TAG, "Unable to sign the user in.");
@@ -199,14 +214,14 @@ public class ListMomentsActivity extends Activity implements PlusClient.Connecti
 
     @Override
     public void onConnected(Bundle connectionHint) {
-        mPlusClient.loadMoments(this);
+        Plus.MomentsApi.load(mGoogleApiClient).setResultCallback(this);
         mMomentListView.setAdapter(mMomentListAdapter);
     }
 
     @Override
-    public void onDisconnected() {
+    public void onConnectionSuspended(int cause) {
         mMomentListView.setAdapter(null);
-        mPlusClient.connect();
+        mGoogleApiClient.connect();
     }
 
     @Override
@@ -221,7 +236,7 @@ public class ListMomentsActivity extends Activity implements PlusClient.Connecti
             mResolvingError = true;
         } catch (IntentSender.SendIntentException e) {
             // Try connecting again.
-            mPlusClient.connect();
+            mGoogleApiClient.connect();
         }
     }
 

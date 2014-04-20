@@ -17,13 +17,10 @@
 package com.google.android.gms.samples.wallet;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -31,28 +28,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ItemListFragment extends ListFragment implements OnClickListener {
-
-    /**
-     * The index of the XY000 item in {@link Constants#ITEMS_FOR_SALE} sent
-     * to {@link ItemDetailsActivity} if the user clicks on the promo section.
-     */
-    private final int XY000_POSITION = 0;
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_item_list, container);
-
-        // Styling the header with HTML elements in TextView
-        TextView promoTitle = (TextView) root.findViewById(R.id.promo_title);
-        promoTitle.setText(Html.fromHtml(getString(R.string.promo)));
-
-        View promo = root.findViewById(R.id.promotion);
-        promo.setOnClickListener(this);
-
-        return root;
-    }
+public class ItemListFragment extends ListFragment {
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -61,13 +37,6 @@ public class ItemListFragment extends ListFragment implements OnClickListener {
         ArrayAdapter<ItemInfo> adapter = new ItemAdapter(getActivity(),
                 Constants.ITEMS_FOR_SALE);
         setListAdapter(adapter);
-    }
-
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(getActivity(), ItemDetailsActivity.class);
-        intent.putExtra(Constants.EXTRA_ITEM_ID, XY000_POSITION);
-        startActivity(intent);
     }
 
     @Override

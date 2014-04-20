@@ -7,7 +7,7 @@ import android.os.Bundle;
  *
  * @see PaymentFragment
  */
-public class PaymentActivity extends XyzWalletFragmentActivity {
+public class PaymentActivity extends BikestoreFragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -5,7 +5,7 @@
 
     <uses-sdk
         android:minSdkVersion="9"
-        android:targetSdkVersion="17" />
+        android:targetSdkVersion="19" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
@@ -13,8 +13,8 @@
     <application
         android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@style/XyzTheme"
-        android:name=".XyzApplication"
+        android:theme="@style/BikestoreTheme"
+        android:name=".BikestoreApplication"
         android:allowBackup="true" >
         <meta-data
             android:name="com.google.android.gms.version"

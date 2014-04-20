@@ -33,7 +33,7 @@ import android.view.MenuItem;
  * Other pages further in the checkout process will send users back to this page if an error occurs,
  * so {@link #onNewIntent(Intent)} needs to check to see if an error code has been passed in.
  */
-public class CheckoutActivity extends XyzWalletFragmentActivity {
+public class CheckoutActivity extends BikestoreFragmentActivity {
     private Menu mMenu;
 
     @Override
@@ -44,7 +44,7 @@ public class CheckoutActivity extends XyzWalletFragmentActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == LoginActivity.REQUEST_USER_LOGIN) {
+        if (requestCode == REQUEST_USER_LOGIN) {
             if (resultCode == RESULT_OK) {
                 invalidateOptionsMenu();
             }
@@ -59,7 +59,7 @@ public class CheckoutActivity extends XyzWalletFragmentActivity {
 
         mMenu = menu;
         MenuInflater inflater = getMenuInflater();
-        if (((XyzApplication) getApplication()).isLoggedIn()) {
+        if (((BikestoreApplication) getApplication()).isLoggedIn()) {
             inflater.inflate(R.menu.menu_logout, menu);
         } else {
             inflater.inflate(R.menu.menu_login, menu);
@@ -72,12 +72,14 @@ public class CheckoutActivity extends XyzWalletFragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.login:
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivityForResult(intent, LoginActivity.REQUEST_USER_LOGIN);
+                Intent loginIntent = new Intent(this, LoginActivity.class);
+                loginIntent.putExtra(LoginActivity.EXTRA_ACTION, LoginActivity.Action.LOGIN);
+                startActivityForResult(loginIntent, REQUEST_USER_LOGIN);
                 return true;
             case R.id.logout:
-                ((XyzApplication) getApplication()).logout();
-                invalidateOptionsMenu();
+                Intent logoutIntent = new Intent(this, LoginActivity.class);
+                logoutIntent.putExtra(LoginActivity.EXTRA_ACTION, LoginActivity.Action.LOGOUT);
+                startActivityForResult(logoutIntent, REQUEST_USER_LOGIN);
                 return true;
             default:
                 return false;
@@ -109,7 +111,7 @@ public class CheckoutActivity extends XyzWalletFragmentActivity {
             super.invalidateOptionsMenu();
         } else if (mMenu != null) {
             MenuInflater inflater = getMenuInflater();
-            if (((XyzApplication) getApplication()).isLoggedIn()) {
+            if (((BikestoreApplication) getApplication()).isLoggedIn()) {
                 inflater.inflate(R.menu.menu_logout, mMenu);
             } else {
                 inflater.inflate(R.menu.menu_login, mMenu);

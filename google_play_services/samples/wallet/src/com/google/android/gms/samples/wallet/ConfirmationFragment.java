@@ -16,14 +16,13 @@
 
 package com.google.android.gms.samples.wallet;
 
-import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wallet.FullWallet;
 import com.google.android.gms.wallet.FullWalletRequest;
 import com.google.android.gms.wallet.LoyaltyWalletObject;
 import com.google.android.gms.wallet.MaskedWallet;
-import com.google.android.gms.wallet.MaskedWalletRequest;
 import com.google.android.gms.wallet.NotifyTransactionStatusRequest;
-import com.google.android.gms.wallet.WalletClient;
+import com.google.android.gms.wallet.Wallet;
 import com.google.android.gms.wallet.WalletConstants;
 
 import android.app.Activity;
@@ -44,20 +43,20 @@ import android.widget.TextView;
  * {@link FullWallet} will be obtained, which will contain the actual payment info to charge
  * against.
  *
- * <p>When the customer visits this page, a {@link WalletClient} connection should be made in order
+ * <p>When the customer visits this page, a {@link GoogleApiClient} connection should be made in order
  * to interact with the Google Wallet service.  If the user wants to change their shipping address
- * then {@link WalletClient#changeMaskedWallet(String, String, int)} is called.
+ * then {@link Wallet#changeMaskedWallet(GoogleApiClient, String, String, int)} is called.
  * The client creates an instance of {@link FullWalletRequest} to call
- * {@link WalletClient#loadFullWallet(FullWalletRequest, int)} if the user confirms their
+ * {@link Wallet#loadFullWallet(GoogleApiClient, FullWalletRequest, int)} if the user confirms their
  * selections and places an order.
  */
-public class ConfirmationFragment extends XyzWalletFragment implements OnClickListener {
+public class ConfirmationFragment extends BikestoreWalletFragment implements OnClickListener {
 
     // No. of times to retry loadFullWallet on receiving a ConnectionResult.INTERNAL_ERROR
     private static final int MAX_FULL_WALLET_RETRIES = 1;
+    private static final String KEY_RETRY_FULL_WALLET_COUNTER = "KEY_RETRY_FULL_WALLET_COUNTER";
 
     private MaskedWallet mMaskedWallet;
-    private FullWallet mFullWallet;
     private ItemInfo mItemInfo;
 
     // UI components
@@ -82,8 +81,17 @@ public class ConfirmationFragment extends XyzWalletFragment implements OnClickLi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (savedInstanceState != null) {
+            mRetryLoadFullWalletCount = savedInstanceState.getInt(KEY_RETRY_FULL_WALLET_COUNTER);
+        }
         Intent intent = getActivity().getIntent();
         processIntent(intent);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(KEY_RETRY_FULL_WALLET_COUNTER, mRetryLoadFullWalletCount);
     }
 
     @Override
@@ -101,7 +109,11 @@ public class ConfirmationFragment extends XyzWalletFragment implements OnClickLi
 
         Drawable itemImage = getResources().getDrawable(mItemInfo.imageResourceId);
         int imageSize = getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
-        itemImage.setBounds(0, 0, imageSize, imageSize);
+        int actualWidth = itemImage.getIntrinsicWidth();
+        int actualHeight = itemImage.getIntrinsicHeight();
+        int scaledHeight = imageSize;
+        int scaledWidth = (int) (((float) actualWidth / actualHeight) * scaledHeight);
+        itemImage.setBounds(0, 0, scaledWidth, scaledHeight);
         itemName.setCompoundDrawables(itemImage, null, null, null);
 
         TextView itemPrice = (TextView) view.findViewById(R.id.text_item_price);
@@ -188,7 +200,12 @@ public class ConfirmationFragment extends XyzWalletFragment implements OnClickLi
         ItemInfo itemInfo = Constants.ITEMS_FOR_SALE[mItemId];
         // calculating exact shipping and tax should now be possible because there is a shipping
         // address in mMaskedWallet
-        mShipping.setText(Util.formatPrice(getActivity(), itemInfo.shippingPriceMicros));
+        if ((mItemId == Constants.PROMOTION_ITEM) && getApplication().isAddressValidForPromo()) {
+            mShipping.setText(Util.formatPrice(getActivity(), 0L));
+        } else {
+            mShipping.setText(Util.formatPrice(getActivity(), itemInfo.shippingPriceMicros));
+        }
+
         mTax.setText(Util.formatPrice(getActivity(), itemInfo.taxMicros));
         mTotal.setText(Util.formatPrice(getActivity(), itemInfo.getTotalPrice()));
 
@@ -224,7 +241,7 @@ public class ConfirmationFragment extends XyzWalletFragment implements OnClickLi
         switch (requestCode) {
             case REQUEST_CODE_RESOLVE_ERR:
                 if (resultCode == Activity.RESULT_OK) {
-                    mWalletClient.connect();
+                    mGoogleApiClient.connect();
                 } else {
                     handleUnrecoverableGoogleWalletError(errorCode);
                 }
@@ -248,12 +265,12 @@ public class ConfirmationFragment extends XyzWalletFragment implements OnClickLi
                 switch (resultCode) {
                     case Activity.RESULT_OK:
                         if (data.hasExtra(WalletConstants.EXTRA_FULL_WALLET)) {
-                            mFullWallet =
+                            FullWallet fullWallet =
                                     data.getParcelableExtra(WalletConstants.EXTRA_FULL_WALLET);
                             // the full wallet can now be used to process the customer's payment
                             // send the wallet info up to server to process, and to get the result
                             // for sending a transaction status
-                            fetchTransactionStatus(mFullWallet);
+                            fetchTransactionStatus(fullWallet);
                         } else if (data.hasExtra(WalletConstants.EXTRA_MASKED_WALLET)) {
                             mMaskedWallet =
                                     data.getParcelableExtra(WalletConstants.EXTRA_MASKED_WALLET);
@@ -308,7 +325,7 @@ public class ConfirmationFragment extends XyzWalletFragment implements OnClickLi
         if (mConnectionResult != null) {
             resolveUnsuccessfulConnectionResult();
         } else {
-            mWalletClient.changeMaskedWallet(mMaskedWallet.getGoogleTransactionId(),
+            Wallet.changeMaskedWallet(mGoogleApiClient, mMaskedWallet.getGoogleTransactionId(),
                     mMaskedWallet.getMerchantTransactionId(),
                     REQUEST_CODE_RESOLVE_CHANGE_MASKED_WALLET);
         }
@@ -316,7 +333,7 @@ public class ConfirmationFragment extends XyzWalletFragment implements OnClickLi
 
     private void confirmPurchase() {
         if (mConnectionResult != null) {
-            // The user needs to resolve an issue before WalletClient can connect
+            // The user needs to resolve an issue before GoogleApiClient can connect
             resolveUnsuccessfulConnectionResult();
         } else {
             getFullWallet();
@@ -327,7 +344,7 @@ public class ConfirmationFragment extends XyzWalletFragment implements OnClickLi
     }
 
     private void getFullWallet() {
-        mWalletClient.loadFullWallet(WalletUtil.createFullWalletRequest(mItemInfo,
+        Wallet.loadFullWallet(mGoogleApiClient, WalletUtil.createFullWalletRequest(mItemInfo,
                 mMaskedWallet.getGoogleTransactionId()), REQUEST_CODE_RESOLVE_LOAD_FULL_WALLET);
     }
 
@@ -342,18 +359,18 @@ public class ConfirmationFragment extends XyzWalletFragment implements OnClickLi
         // Send back details such as fullWallet.getProxyCard() and fullWallet.getBillingAddress()
         // and get back success or failure
         // The following code assumes a successful response and calls notifyTransactionStatus
-        mWalletClient.notifyTransactionStatus(WalletUtil.createNotifyTransactionStatusRequest(
-                fullWallet.getGoogleTransactionId(),
-                NotifyTransactionStatusRequest.Status.SUCCESS));
+        Wallet.notifyTransactionStatus(mGoogleApiClient,
+                WalletUtil.createNotifyTransactionStatusRequest(fullWallet.getGoogleTransactionId(),
+                        NotifyTransactionStatusRequest.Status.SUCCESS));
 
         Intent intent = new Intent(getActivity(), OrderCompleteActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(Constants.EXTRA_FULL_WALLET, mFullWallet);
+        intent.putExtra(Constants.EXTRA_FULL_WALLET, fullWallet);
         startActivity(intent);
     }
 
     /**
-     * Retries {@link WalletClient#loadFullWallet(FullWalletRequest, int)} if
+     * Retries {@link Wallet#loadFullWallet(GoogleApiClient, FullWalletRequest, int)} if
      * {@link #MAX_FULL_WALLET_RETRIES} has not been reached.
      *
      * @return {@code true} if {@link ConfirmationFragment#getFullWallet()} is retried,

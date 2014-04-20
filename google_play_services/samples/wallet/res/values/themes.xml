@@ -16,7 +16,7 @@
 -->
 
 <resources>
-    <style name="XyzTheme" parent="@android:style/Theme.Light">
+    <style name="BikestoreTheme" parent="@android:style/Theme.Light">
         <item name="android:windowBackground">@android:color/white</item>
         <item name="android:colorBackground">@android:color/white</item>
     </style>
